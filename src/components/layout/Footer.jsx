@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col gap-5 px-6 py-8 text-sm text-stone-600 md:flex-row md:items-center md:justify-between lg:px-8">
         <div>
           <img
-            src="/proactive-logo.png"
+            src="/proactive-logo.webp"
             alt="Proactive Wildlife Protection"
             className="h-12 w-auto"
           />

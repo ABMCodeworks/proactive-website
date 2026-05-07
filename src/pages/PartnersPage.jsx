@@ -7,13 +7,13 @@ import { trustees, advisors } from "../data/siteData";
 import Seo from "../components/seo/Seo";
 import { pageSeo } from "../data/seoData";
 
-import oakFoundationLogo from "../assets/partners/oak-foundation.png";
-import internationalRhinoFoundationLogo from "../assets/partners/international-rhino-foundation.png";
-import rhinoRecoveryFundLogo from "../assets/partners/rhino-recovery-fund.png";
-import alineaInternationalLogo from "../assets/partners/alinea-international.png";
+import oakFoundationLogo from "../assets/partners/oak-foundation.webp";
+import internationalRhinoFoundationLogo from "../assets/partners/international-rhino-foundation.webp";
+import rhinoRecoveryFundLogo from "../assets/partners/rhino-recovery-fund.webp";
+import alineaInternationalLogo from "../assets/partners/alinea-international.webp";
 import lowveldRhinoTrustLogo from "../assets/partners/lowveld-rhino-trust.webp";
-import ezytrackLogo from "../assets/partners/ezytrack.png";
-import zrpMmfuLogo from "../assets/partners/zrp-mffu.png";
+import ezytrackLogo from "../assets/partners/ezytrack.webp";
+import zrpMmfuLogo from "../assets/partners/zrp-mffu.webp";
 
 const partners = [
   {

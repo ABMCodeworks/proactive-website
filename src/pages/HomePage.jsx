@@ -8,10 +8,10 @@ import { stats, pillars } from "../data/siteData";
 import Seo from "../components/seo/Seo";
 import { pageSeo } from "../data/seoData";
 
-import animalImageOne from "../assets/animal-1.jpg";
-import animalImageTwo from "../assets/animal-2.jpg";
-import communityImage from "../assets/community.jpg";
-import lectureImage from "../assets/lecture.jpg";
+import animalImageOne from "../assets/animal-1.webp";
+import animalImageTwo from "../assets/animal-2.webp";
+import communityImage from "../assets/community.webp";
+import lectureImage from "../assets/lecture.webp";
 
 export default function HomePage() {
   return (
