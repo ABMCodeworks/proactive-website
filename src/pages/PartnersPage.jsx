@@ -1,10 +1,13 @@
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { ExternalLink, ShieldCheck } from "lucide-react";
+
 import Section from "../components/ui/Section";
 import SectionHeader from "../components/ui/SectionHeader";
 import PageHero from "../components/ui/PageHero";
-import { trustees, advisors } from "../data/siteData";
 import Seo from "../components/seo/Seo";
+
+import { trustees, advisors } from "../data/siteData";
 import { pageSeo } from "../data/seoData";
 
 import oakFoundationLogo from "../assets/partners/oak-foundation.webp";
@@ -81,10 +84,145 @@ const partners = [
   },
 ];
 
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 18,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+function AnimatedGrid({ children, className }) {
+  const ref = useRef(null);
+  const shouldReduceMotion = useReducedMotion();
+
+  const isInView = useInView(ref, {
+    once: true,
+    amount: 0.12,
+    margin: "0px 0px -80px 0px",
+  });
+
+  if (shouldReduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
+  return (
+    <motion.div
+      ref={ref}
+      variants={containerVariants}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function PartnerCard({ partner }) {
+  const shouldReduceMotion = useReducedMotion();
+
+  const MotionWrapper = shouldReduceMotion ? "article" : motion.article;
+
+  return (
+    <MotionWrapper
+      variants={shouldReduceMotion ? undefined : cardVariants}
+      className="group overflow-hidden rounded-[1.6rem] border border-black/10 bg-white/25 shadow-lg shadow-black/5 backdrop-blur transition-colors duration-300 hover:bg-white/40 hover:shadow-xl hover:shadow-black/10"
+    >
+      <div className="flex min-h-[160px] items-center justify-center border-b border-black/10 bg-white/45 px-8 py-8">
+        <img
+          src={partner.logo}
+          alt={`${partner.name} logo`}
+          width="240"
+          height="96"
+          loading="lazy"
+          decoding="async"
+          className="max-h-24 w-auto max-w-[240px] object-contain transition-transform duration-300 ease-out group-hover:scale-[1.035]"
+        />
+      </div>
+
+      <div className="p-6">
+        <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[#5f6858]/15 text-[#5f6858] transition-colors duration-300 group-hover:bg-[#5f6858] group-hover:text-white">
+          <ShieldCheck className="h-5 w-5" />
+        </div>
+
+        <h3 className="text-2xl font-black text-stone-900">{partner.name}</h3>
+
+        <p className="mt-4 text-sm leading-7 text-stone-700">
+          {partner.description}
+        </p>
+
+        <div className="mt-5 rounded-2xl border border-black/10 bg-white/35 p-4 transition-colors duration-300 group-hover:bg-white/50">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#5f6858]">
+            Focus
+          </p>
+
+          <p className="mt-2 text-sm leading-7 text-stone-700">
+            {partner.focus}
+          </p>
+        </div>
+
+        {partner.website ? (
+          <a
+            href={partner.website}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#5f6858] px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-[#4f5849]"
+          >
+            Visit website <ExternalLink className="h-4 w-4" />
+          </a>
+        ) : null}
+      </div>
+    </MotionWrapper>
+  );
+}
+
+function TrusteeCard({ person }) {
+  const shouldReduceMotion = useReducedMotion();
+
+  const MotionWrapper = shouldReduceMotion ? "article" : motion.article;
+
+  return (
+    <MotionWrapper
+      variants={shouldReduceMotion ? undefined : cardVariants}
+      className="rounded-[1.6rem] border border-black/10 bg-white/25 p-6 shadow-lg shadow-black/5 backdrop-blur transition-colors duration-300 hover:bg-white/35 hover:shadow-xl hover:shadow-black/10"
+    >
+      <div className="inline-block rounded-full border border-[#5f6858]/25 bg-[#5f6858]/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-[#5f6858]">
+        Trustee
+      </div>
+
+      <h3 className="mt-4 text-2xl font-black text-stone-900">{person.name}</h3>
+
+      <p className="mt-2 text-sm font-semibold uppercase tracking-[0.2em] text-[#5f6858]">
+        {person.role}
+      </p>
+
+      <p className="mt-4 text-sm leading-7 text-stone-700">{person.bio}</p>
+    </MotionWrapper>
+  );
+}
+
 export default function PartnersPage() {
   return (
     <div>
       <Seo {...pageSeo.partners} />
+
       <PageHero
         eyebrow="Partners"
         title="Collaboration is at the centre of the PROACTIVE model"
@@ -98,60 +236,11 @@ export default function PartnersPage() {
           body="Each partner contributes specialist knowledge, funding, operational support, technology, or law-enforcement capability to help strengthen long-term conservation outcomes."
         />
 
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {partners.map((partner, idx) => (
-            <motion.div
-              key={partner.name}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ delay: idx * 0.04, duration: 0.4 }}
-              className="group overflow-hidden rounded-[1.6rem] border border-black/10 bg-white/25 shadow-lg shadow-black/5 backdrop-blur transition hover:-translate-y-1 hover:bg-white/35"
-            >
-              <div className="flex min-h-[160px] items-center justify-center border-b border-black/10 bg-white/45 px-8 py-8">
-                <img
-                  src={partner.logo}
-                  alt={`${partner.name} logo`}
-                  className="max-h-24 w-auto max-w-[240px] object-contain transition group-hover:scale-105"
-                />
-              </div>
-
-              <div className="p-6">
-                <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[#5f6858]/15 text-[#5f6858]">
-                  <ShieldCheck className="h-5 w-5" />
-                </div>
-
-                <h3 className="text-2xl font-black text-stone-900">
-                  {partner.name}
-                </h3>
-
-                <p className="mt-4 text-sm leading-7 text-stone-700">
-                  {partner.description}
-                </p>
-
-                <div className="mt-5 rounded-2xl border border-black/10 bg-white/35 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#5f6858]">
-                    Focus
-                  </p>
-                  <p className="mt-2 text-sm leading-7 text-stone-700">
-                    {partner.focus}
-                  </p>
-                </div>
-
-                {partner.website && (
-                  <a
-                    href={partner.website}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#5f6858] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#4f5849]"
-                  >
-                    Visit website <ExternalLink className="h-4 w-4" />
-                  </a>
-                )}
-              </div>
-            </motion.div>
+        <AnimatedGrid className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {partners.map((partner) => (
+            <PartnerCard key={partner.name} partner={partner} />
           ))}
-        </div>
+        </AnimatedGrid>
       </Section>
 
       <Section>
@@ -161,54 +250,32 @@ export default function PartnersPage() {
           body="The trust's leadership brings together conservation management, rhino protection, field operations, and law-enforcement expertise."
         />
 
-        <div className="grid gap-5 lg:grid-cols-2">
-          {trustees.map((person, idx) => (
-            <motion.div
-              key={person.name}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.04, duration: 0.4 }}
-              className="rounded-[1.6rem] border border-black/10 bg-white/25 p-6"
-            >
-              <div className="inline-block rounded-full border border-[#5f6858]/25 bg-[#5f6858]/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-[#5f6858]">
-                Trustee
-              </div>
-
-              <h3 className="mt-4 text-2xl font-black text-stone-900">
-                {person.name}
-              </h3>
-
-              <p className="mt-2 text-sm font-semibold uppercase tracking-[0.2em] text-[#5f6858]">
-                {person.role}
-              </p>
-
-              <p className="mt-4 text-sm leading-7 text-stone-700">
-                {person.bio}
-              </p>
-            </motion.div>
+        <AnimatedGrid className="grid gap-5 lg:grid-cols-2">
+          {trustees.map((person) => (
+            <TrusteeCard key={person.name} person={person} />
           ))}
-        </div>
+        </AnimatedGrid>
       </Section>
 
       <Section>
-        <div className="rounded-[2rem] border border-black/10 bg-white/25 p-8 md:p-10">
+        <div className="rounded-[2rem] border border-black/10 bg-white/25 p-8 shadow-lg shadow-black/5 backdrop-blur md:p-10">
           <SectionHeader
             eyebrow="Technical advisory team"
             title="Specialist knowledge supporting delivery"
             body="The advisory team spans legal, veterinary, conservation, strategy, and international law expertise."
           />
 
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          <AnimatedGrid className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {advisors.map((advisor) => (
-              <div
+              <motion.div
                 key={advisor}
-                className="rounded-2xl border border-black/10 bg-white/30 px-5 py-4 text-sm leading-7 text-stone-700"
+                variants={cardVariants}
+                className="rounded-2xl border border-black/10 bg-white/30 px-5 py-4 text-sm leading-7 text-stone-700 shadow-sm shadow-black/5 transition-colors duration-300 hover:bg-white/45"
               >
                 {advisor}
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </AnimatedGrid>
         </div>
       </Section>
     </div>
