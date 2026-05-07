@@ -1,11 +1,13 @@
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Leaf, ChevronRight, ArrowRight, BadgeCheck } from "lucide-react";
+
 import Section from "../components/ui/Section";
 import SectionHeader from "../components/ui/SectionHeader";
 import CardPanel from "../components/ui/CardPanel";
-import { stats, pillars } from "../data/siteData";
 import Seo from "../components/seo/Seo";
+
+import { stats, pillars } from "../data/siteData";
 import { pageSeo } from "../data/seoData";
 
 import animalImageOne from "../assets/animal-1.webp";
@@ -16,14 +18,21 @@ import lectureImage from "../assets/lecture.webp";
 export default function HomePage() {
   return (
     <div>
-      <Seo {...pageSeo.home} />{" "}
+      <Seo {...pageSeo.home} />
+
       <section className="relative isolate overflow-hidden">
-        <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 -z-10 bg-[#d6d4cd]">
           <img
             src={animalImageTwo}
             alt="Protected wildlife in Zimbabwe"
+            width="1920"
+            height="1080"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
             className="h-full w-full object-cover opacity-[0.90]"
           />
+
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(245,244,239,0.94)_0%,rgba(245,244,239,0.78)_48%,rgba(245,244,239,0.35)_100%)]" />
         </div>
 
@@ -76,12 +85,18 @@ export default function HomePage() {
 
             <div className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-white/25 p-4 shadow-2xl shadow-black/10 backdrop-blur">
               <div className="overflow-hidden rounded-[1.6rem] border border-black/10 bg-white">
-                <div className="relative h-72 overflow-hidden sm:h-80 lg:h-96">
+                <div className="relative h-72 overflow-hidden bg-[#d6d4cd] sm:h-80 lg:h-96">
                   <img
                     src={animalImageOne}
                     alt="Wildlife protection focus"
+                    width="1200"
+                    height="900"
+                    loading="eager"
+                    fetchPriority="high"
+                    decoding="async"
                     className="h-full w-full object-cover"
                   />
+
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08)_0%,rgba(0,0,0,0.58)_100%)]" />
 
                   <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
@@ -90,11 +105,13 @@ export default function HomePage() {
                         <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/80">
                           Executive focus
                         </p>
+
                         <h2 className="mt-2 max-w-xl text-2xl font-bold text-white">
                           Pre-emptive protection through specialist response
                           capability
                         </h2>
                       </div>
+
                       <BadgeCheck className="mt-1 h-10 w-10 shrink-0 text-white/90" />
                     </div>
                   </div>
@@ -109,6 +126,7 @@ export default function HomePage() {
                       <div className="text-2xl font-black text-white">
                         {item.value}
                       </div>
+
                       <p className="mt-2 text-sm leading-6 text-white/85">
                         {item.label}
                       </p>
@@ -120,6 +138,7 @@ export default function HomePage() {
           </motion.div>
         </div>
       </section>
+
       <Section>
         <SectionHeader
           eyebrow="Why PROACTIVE"
@@ -156,13 +175,18 @@ export default function HomePage() {
           })}
         </div>
       </Section>
+
       <Section>
         <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
           <CardPanel className="overflow-hidden border-black/10 bg-white/25 p-0">
-            <div className="h-64 overflow-hidden">
+            <div className="h-64 overflow-hidden bg-[#d6d4cd]">
               <img
                 src={communityImage}
                 alt="Community conservation partnership"
+                width="900"
+                height="500"
+                loading="lazy"
+                decoding="async"
                 className="h-full w-full object-cover"
               />
             </div>
@@ -185,10 +209,14 @@ export default function HomePage() {
           </CardPanel>
 
           <CardPanel className="overflow-hidden border-black/10 bg-white/25 p-0">
-            <div className="h-64 overflow-hidden">
+            <div className="h-64 overflow-hidden bg-[#d6d4cd]">
               <img
                 src={lectureImage}
                 alt="Training and learning session"
+                width="900"
+                height="500"
+                loading="lazy"
+                decoding="async"
                 className="h-full w-full object-cover"
               />
             </div>
