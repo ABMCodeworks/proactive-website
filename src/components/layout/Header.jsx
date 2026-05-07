@@ -7,8 +7,13 @@ export default function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
         <NavLink to="/" className="flex items-center">
           <img
-            src="/proactive-logo.png"
-            alt="Proactive Wildlife Protection"
+            src="/proactive-logo.webp"
+            alt="PROACTIVE Wildlife Protection Trust"
+            width="180"
+            height="72"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
             className="h-12 w-auto sm:h-14"
           />
         </NavLink>
