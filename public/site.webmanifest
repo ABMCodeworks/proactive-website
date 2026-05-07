@@ -1,0 +1,16 @@
+{
+    "name": "PROACTIVE Wildlife Protection Trust",
+    "short_name": "PROACTIVE",
+    "description": "Information-led wildlife protection and conservation partnerships in Zimbabwe.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#f5f4ef",
+    "theme_color": "#5f6858",
+    "icons": [
+        {
+            "src": "/favicon.ico",
+            "sizes": "48x48",
+            "type": "image/x-icon"
+        }
+    ]
+}
