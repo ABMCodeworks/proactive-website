@@ -34,40 +34,88 @@ export default function HomePage() {
   }, []);
 
   const [activeSlide, setActiveSlide] = useState(0);
+  const [previousSlide, setPreviousSlide] = useState(null);
+
+  const nextSlide = useMemo(() => {
+    if (slideshowImages.length <= 1) return 0;
+    return (activeSlide + 1) % slideshowImages.length;
+  }, [activeSlide, slideshowImages.length]);
+
+  useEffect(() => {
+    const firstImage = slideshowImages[0];
+    if (!firstImage) return;
+
+    const link = document.createElement("link");
+    link.rel = "preload";
+    link.as = "image";
+    link.href = firstImage;
+
+    document.head.appendChild(link);
+
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, [slideshowImages]);
+
+  useEffect(() => {
+    if (slideshowImages.length <= 1) return undefined;
+
+    const nextImage = new Image();
+    nextImage.decoding = "async";
+    nextImage.src = slideshowImages[nextSlide];
+
+    return undefined;
+  }, [nextSlide, slideshowImages]);
 
   useEffect(() => {
     if (slideshowImages.length <= 1) return undefined;
 
     const timer = window.setInterval(() => {
-      setActiveSlide((current) => (current + 1) % slideshowImages.length);
+      setActiveSlide((current) => {
+        setPreviousSlide(current);
+        return (current + 1) % slideshowImages.length;
+      });
     }, 5500);
 
     return () => window.clearInterval(timer);
   }, [slideshowImages.length]);
+
+  const visibleSlideIndexes = useMemo(() => {
+    const indexes = new Set([activeSlide]);
+
+    if (previousSlide !== null) {
+      indexes.add(previousSlide);
+    }
+
+    return Array.from(indexes);
+  }, [activeSlide, previousSlide]);
 
   return (
     <div>
       <Seo {...pageSeo.home} />
 
       <section className="relative isolate min-h-screen overflow-hidden bg-stone-950">
-        {slideshowImages.map((image, index) => (
-          <img
-            key={image}
-            src={image}
-            alt=""
-            width="1920"
-            height="1080"
-            loading={index === 0 ? "eager" : "lazy"}
-            fetchPriority={index === 0 ? "high" : "auto"}
-            decoding="async"
-            className={[
-              "absolute inset-0 h-full w-full object-cover transition-all duration-[1800ms] ease-out",
-              index === activeSlide
-                ? "scale-100 opacity-100"
-                : "scale-105 opacity-0",
-            ].join(" ")}
-          />
-        ))}
+        {visibleSlideIndexes.map((index) => {
+          const image = slideshowImages[index];
+          const isActive = index === activeSlide;
+
+          return (
+            <img
+              key={`${image}-${index}`}
+              src={image}
+              alt=""
+              width="1920"
+              height="1080"
+              loading={index === 0 ? "eager" : "lazy"}
+              fetchPriority={index === 0 ? "high" : "auto"}
+              decoding="async"
+              className={[
+                "absolute inset-0 h-full w-full object-cover transition-all duration-[1800ms] ease-out",
+                isActive ? "scale-100 opacity-100" : "scale-105 opacity-0",
+              ].join(" ")}
+            />
+          );
+        })}
 
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(14,18,12,0.84)_0%,rgba(14,18,12,0.68)_36%,rgba(14,18,12,0.28)_64%,rgba(14,18,12,0.16)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_34%,rgba(255,255,255,0.16),transparent_32%)]" />
@@ -112,13 +160,16 @@ export default function HomePage() {
           </motion.div>
         </div>
 
-        <div className="absolute hidden sm:flex bottom-6 left-1/2 z-20 flex -translate-x-1/2 gap-2 rounded-full border border-white/15 bg-black/25 px-3 py-2 backdrop-blur-md">
+        <div className="absolute bottom-6 left-1/2 z-20 hidden -translate-x-1/2 gap-2 rounded-full border border-white/15 bg-black/25 px-3 py-2 backdrop-blur-md sm:flex">
           {slideshowImages.map((image, index) => (
             <button
               key={`${image}-dot`}
               type="button"
               aria-label={`Show slide ${index + 1}`}
-              onClick={() => setActiveSlide(index)}
+              onClick={() => {
+                setPreviousSlide(activeSlide);
+                setActiveSlide(index);
+              }}
               className={[
                 "h-2.5 rounded-full transition-all",
                 index === activeSlide
