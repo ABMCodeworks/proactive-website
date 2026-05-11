@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { ExternalLink, ShieldCheck } from "lucide-react";
 
@@ -108,6 +108,80 @@ const cardVariants = {
   },
 };
 
+function SmartLogo({ src, alt }) {
+  const wrapperRef = useRef(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  const isNearView = useInView(wrapperRef, {
+    once: true,
+    amount: 0.05,
+    margin: "250px 0px 250px 0px",
+  });
+
+  useEffect(() => {
+    if (!isNearView || !src) return undefined;
+
+    let cancelled = false;
+    const image = new Image();
+
+    image.decoding = "async";
+    image.src = src;
+
+    async function markLoaded() {
+      try {
+        if (image.decode) {
+          await image.decode();
+        }
+      } catch {
+        // Some browsers throw on decode even when the image is usable.
+      }
+
+      if (!cancelled) {
+        setIsLoaded(true);
+      }
+    }
+
+    if (image.complete) {
+      markLoaded();
+    } else {
+      image.onload = markLoaded;
+      image.onerror = markLoaded;
+    }
+
+    return () => {
+      cancelled = true;
+      image.onload = null;
+      image.onerror = null;
+    };
+  }, [isNearView, src]);
+
+  return (
+    <div
+      ref={wrapperRef}
+      className="relative flex min-h-[96px] w-full items-center justify-center"
+    >
+      <div
+        aria-hidden="true"
+        className={[
+          "absolute h-16 w-44 rounded-2xl bg-[#d6d4cd]/60 transition-opacity duration-300",
+          isLoaded ? "opacity-0" : "opacity-100",
+        ].join(" ")}
+      />
+
+      {isLoaded ? (
+        <img
+          src={src}
+          alt={alt}
+          width="240"
+          height="96"
+          decoding="async"
+          className="max-h-24 w-auto max-w-[240px] object-contain opacity-100 transition-transform duration-300 ease-out group-hover:scale-[1.035]"
+        />
+      ) : null}
+    </div>
+  );
+}
+
 function AnimatedGrid({ children, className }) {
   const ref = useRef(null);
   const shouldReduceMotion = useReducedMotion();
@@ -137,7 +211,6 @@ function AnimatedGrid({ children, className }) {
 
 function PartnerCard({ partner }) {
   const shouldReduceMotion = useReducedMotion();
-
   const MotionWrapper = shouldReduceMotion ? "article" : motion.article;
 
   return (
@@ -146,15 +219,7 @@ function PartnerCard({ partner }) {
       className="group overflow-hidden rounded-[1.6rem] border border-black/10 bg-white/25 shadow-lg shadow-black/5 backdrop-blur transition-colors duration-300 hover:bg-white/40 hover:shadow-xl hover:shadow-black/10"
     >
       <div className="flex min-h-[160px] items-center justify-center border-b border-black/10 bg-white/45 px-8 py-8">
-        <img
-          src={partner.logo}
-          alt={`${partner.name} logo`}
-          width="240"
-          height="96"
-          loading="lazy"
-          decoding="async"
-          className="max-h-24 w-auto max-w-[240px] object-contain transition-transform duration-300 ease-out group-hover:scale-[1.035]"
-        />
+        <SmartLogo src={partner.logo} alt={`${partner.name} logo`} />
       </div>
 
       <div className="p-6">
@@ -195,7 +260,6 @@ function PartnerCard({ partner }) {
 
 function TrusteeCard({ person }) {
   const shouldReduceMotion = useReducedMotion();
-
   const MotionWrapper = shouldReduceMotion ? "article" : motion.article;
 
   return (
