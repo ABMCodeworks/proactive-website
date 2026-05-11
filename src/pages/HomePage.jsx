@@ -35,6 +35,7 @@ export default function HomePage() {
 
   const [activeSlide, setActiveSlide] = useState(0);
   const [previousSlide, setPreviousSlide] = useState(null);
+  const [loadedSlides, setLoadedSlides] = useState(() => new Set());
 
   const nextSlide = useMemo(() => {
     if (slideshowImages.length <= 1) return 0;
@@ -42,8 +43,43 @@ export default function HomePage() {
   }, [activeSlide, slideshowImages.length]);
 
   useEffect(() => {
+    if (!slideshowImages.length) return undefined;
+
+    let cancelled = false;
+
+    slideshowImages.forEach((src, index) => {
+      const img = new Image();
+
+      img.decoding = "async";
+      img.src = src;
+
+      img.onload = async () => {
+        try {
+          if (img.decode) {
+            await img.decode();
+          }
+        } catch {
+          // Some browsers can throw on decode even when the image is usable.
+        }
+
+        if (!cancelled) {
+          setLoadedSlides((current) => {
+            const next = new Set(current);
+            next.add(index);
+            return next;
+          });
+        }
+      };
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [slideshowImages]);
+
+  useEffect(() => {
     const firstImage = slideshowImages[0];
-    if (!firstImage) return;
+    if (!firstImage) return undefined;
 
     const link = document.createElement("link");
     link.rel = "preload";
@@ -72,47 +108,61 @@ export default function HomePage() {
 
     const timer = window.setInterval(() => {
       setActiveSlide((current) => {
+        const next = (current + 1) % slideshowImages.length;
+
+        if (!loadedSlides.has(next)) {
+          return current;
+        }
+
         setPreviousSlide(current);
-        return (current + 1) % slideshowImages.length;
+        return next;
       });
     }, 5500);
 
     return () => window.clearInterval(timer);
-  }, [slideshowImages.length]);
+  }, [loadedSlides, slideshowImages.length]);
 
   const visibleSlideIndexes = useMemo(() => {
-    const indexes = new Set([activeSlide]);
+    const indexes = new Set();
 
-    if (previousSlide !== null) {
+    if (loadedSlides.has(activeSlide)) {
+      indexes.add(activeSlide);
+    }
+
+    if (previousSlide !== null && loadedSlides.has(previousSlide)) {
       indexes.add(previousSlide);
     }
 
     return Array.from(indexes);
-  }, [activeSlide, previousSlide]);
+  }, [activeSlide, previousSlide, loadedSlides]);
 
   return (
     <div>
       <Seo {...pageSeo.home} />
 
       <section className="relative isolate min-h-screen overflow-hidden bg-stone-950">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url(${animalImageTwo})`,
+          }}
+        />
+
         {visibleSlideIndexes.map((index) => {
           const image = slideshowImages[index];
           const isActive = index === activeSlide;
 
           return (
-            <img
+            <div
               key={`${image}-${index}`}
-              src={image}
-              alt=""
-              width="1920"
-              height="1080"
-              loading={index === 0 ? "eager" : "lazy"}
-              fetchPriority={index === 0 ? "high" : "auto"}
-              decoding="async"
+              aria-hidden="true"
               className={[
-                "absolute inset-0 h-full w-full object-cover transition-all duration-[1800ms] ease-out",
+                "absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-[1800ms] ease-out",
                 isActive ? "scale-100 opacity-100" : "scale-105 opacity-0",
               ].join(" ")}
+              style={{
+                backgroundImage: `url(${image})`,
+              }}
             />
           );
         })}
@@ -167,6 +217,8 @@ export default function HomePage() {
               type="button"
               aria-label={`Show slide ${index + 1}`}
               onClick={() => {
+                if (!loadedSlides.has(index)) return;
+
                 setPreviousSlide(activeSlide);
                 setActiveSlide(index);
               }}
@@ -175,6 +227,9 @@ export default function HomePage() {
                 index === activeSlide
                   ? "w-8 bg-white"
                   : "w-2.5 bg-white/45 hover:bg-white/75",
+                !loadedSlides.has(index)
+                  ? "cursor-not-allowed opacity-30"
+                  : "cursor-pointer",
               ].join(" ")}
             />
           ))}
