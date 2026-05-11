@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { Leaf, ChevronRight, ArrowRight, BadgeCheck } from "lucide-react";
 
 import Section from "../components/ui/Section";
@@ -23,6 +23,91 @@ const slideshowImports = import.meta.glob(
     import: "default",
   },
 );
+
+function SmartImage({
+  src,
+  alt,
+  className = "",
+  wrapperClassName = "",
+  priority = false,
+  position = "center",
+}) {
+  const wrapperRef = useRef(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  const isNearView = useInView(wrapperRef, {
+    once: true,
+    amount: 0.05,
+    margin: priority ? "1000px 0px 1000px 0px" : "350px 0px 350px 0px",
+  });
+
+  useEffect(() => {
+    if (!src || (!priority && !isNearView)) return undefined;
+
+    let cancelled = false;
+    const image = new Image();
+
+    image.decoding = "async";
+    image.src = src;
+
+    async function finishLoading() {
+      try {
+        if (image.decode) {
+          await image.decode();
+        }
+      } catch {
+        // Some browsers throw on decode even when the image is still usable.
+      }
+
+      if (!cancelled) {
+        setIsLoaded(true);
+      }
+    }
+
+    if (image.complete) {
+      finishLoading();
+    } else {
+      image.onload = finishLoading;
+      image.onerror = finishLoading;
+    }
+
+    return () => {
+      cancelled = true;
+      image.onload = null;
+      image.onerror = null;
+    };
+  }, [src, isNearView, priority]);
+
+  return (
+    <div
+      ref={wrapperRef}
+      className={`relative overflow-hidden ${wrapperClassName}`}
+    >
+      <div
+        aria-hidden="true"
+        className={[
+          "absolute inset-0 bg-[#d6d4cd] transition-opacity duration-500",
+          isLoaded ? "opacity-0" : "opacity-100",
+        ].join(" ")}
+      />
+
+      {isLoaded ? (
+        <div
+          role={alt ? "img" : undefined}
+          aria-label={alt || undefined}
+          className={[
+            "absolute inset-0 bg-cover bg-no-repeat opacity-100 transition-opacity duration-700",
+            className,
+          ].join(" ")}
+          style={{
+            backgroundImage: `url(${src})`,
+            backgroundPosition: position,
+          }}
+        />
+      ) : null}
+    </div>
+  );
+}
 
 export default function HomePage() {
   const slideshowImages = useMemo(() => {
@@ -59,7 +144,7 @@ export default function HomePage() {
             await img.decode();
           }
         } catch {
-          // Some browsers can throw on decode even when the image is usable.
+          // Some browsers throw on decode even when the image is usable.
         }
 
         if (!cancelled) {
@@ -246,17 +331,13 @@ export default function HomePage() {
             className="overflow-hidden rounded-[2rem] border border-black/10 bg-white/25 p-4 shadow-2xl shadow-black/10 backdrop-blur"
           >
             <div className="overflow-hidden rounded-[1.6rem] border border-black/10 bg-white">
-              <div className="h-80 overflow-hidden bg-[#d6d4cd] sm:h-96 lg:h-[420px]">
-                <img
-                  src={animalImageOne}
-                  alt="Wildlife protection focus"
-                  width="1200"
-                  height="900"
-                  loading="lazy"
-                  decoding="async"
-                  className="h-full w-full object-cover"
-                />
-              </div>
+              <SmartImage
+                src={animalImageOne}
+                alt="Wildlife protection focus"
+                priority
+                wrapperClassName="h-80 bg-[#d6d4cd] sm:h-96 lg:h-[420px]"
+                position="center"
+              />
 
               <div className="bg-[#d6d4cd] p-6 sm:p-8">
                 <div className="flex items-start justify-between gap-4">
@@ -358,17 +439,12 @@ export default function HomePage() {
       <Section>
         <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
           <CardPanel className="overflow-hidden border-black/10 bg-white/25 p-0">
-            <div className="h-64 overflow-hidden bg-[#d6d4cd]">
-              <img
-                src={communityImage}
-                alt="Community conservation partnership"
-                width="900"
-                height="500"
-                loading="lazy"
-                decoding="async"
-                className="h-full w-full object-cover"
-              />
-            </div>
+            <SmartImage
+              src={communityImage}
+              alt="Community conservation partnership"
+              wrapperClassName="h-64 bg-[#d6d4cd]"
+              position="center"
+            />
 
             <div className="p-6 sm:p-8">
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#5f6858]">
@@ -388,17 +464,12 @@ export default function HomePage() {
           </CardPanel>
 
           <CardPanel className="overflow-hidden border-black/10 bg-white/25 p-0">
-            <div className="h-64 overflow-hidden bg-[#d6d4cd]">
-              <img
-                src={lectureImage}
-                alt="Training and learning session"
-                width="900"
-                height="500"
-                loading="lazy"
-                decoding="async"
-                className="h-full w-full object-cover"
-              />
-            </div>
+            <SmartImage
+              src={lectureImage}
+              alt="Training and learning session"
+              wrapperClassName="h-64 bg-[#d6d4cd]"
+              position="center"
+            />
 
             <div className="p-6 sm:p-8">
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#5f6858]">
