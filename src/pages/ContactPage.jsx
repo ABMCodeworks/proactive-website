@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 import { Mail, Send } from "lucide-react";
 
 import Seo from "../components/seo/Seo";
@@ -7,13 +8,19 @@ import Section from "../components/ui/Section";
 import ContactRow from "../components/ui/ContactRow";
 import { pageSeo } from "../data/seoData";
 
+const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
+
 export default function ContactPage() {
+  const recaptchaRef = useRef(null);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     subject: "",
     message: "",
   });
+
+  const [recaptchaToken, setRecaptchaToken] = useState("");
 
   const [status, setStatus] = useState({
     type: "",
@@ -31,6 +38,10 @@ export default function ContactPage() {
     }));
   }
 
+  function handleRecaptchaChange(token) {
+    setRecaptchaToken(token || "");
+  }
+
   async function handleSubmit(event) {
     event.preventDefault();
 
@@ -38,6 +49,15 @@ export default function ContactPage() {
       type: "",
       message: "",
     });
+
+    if (!recaptchaToken) {
+      setStatus({
+        type: "error",
+        message: "Please complete the reCAPTCHA before sending your message.",
+      });
+
+      return;
+    }
 
     setIsSubmitting(true);
 
@@ -47,7 +67,10 @@ export default function ContactPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          recaptchaToken,
+        }),
       });
 
       const result = await response.json();
@@ -67,6 +90,12 @@ export default function ContactPage() {
         subject: "",
         message: "",
       });
+
+      setRecaptchaToken("");
+
+      if (recaptchaRef.current) {
+        recaptchaRef.current.reset();
+      }
     } catch (error) {
       setStatus({
         type: "error",
@@ -74,6 +103,12 @@ export default function ContactPage() {
           error.message ||
           "Something went wrong. Please email admin@proactivewildlife.org directly.",
       });
+
+      setRecaptchaToken("");
+
+      if (recaptchaRef.current) {
+        recaptchaRef.current.reset();
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -188,6 +223,23 @@ export default function ContactPage() {
                 />
               </div>
 
+              {recaptchaSiteKey ? (
+                <div className="overflow-hidden rounded-2xl">
+                  <ReCAPTCHA
+                    ref={recaptchaRef}
+                    sitekey={recaptchaSiteKey}
+                    onChange={handleRecaptchaChange}
+                    onExpired={() => setRecaptchaToken("")}
+                    onErrored={() => setRecaptchaToken("")}
+                  />
+                </div>
+              ) : (
+                <div className="rounded-2xl border border-red-700/20 bg-red-50 px-5 py-4 text-sm font-semibold text-red-900">
+                  reCAPTCHA site key is missing. Add VITE_RECAPTCHA_SITE_KEY to
+                  your .env file.
+                </div>
+              )}
+
               {status.message ? (
                 <div
                   className={
@@ -202,7 +254,7 @@ export default function ContactPage() {
 
               <button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitting || !recaptchaSiteKey || !recaptchaToken}
                 className="inline-flex items-center justify-center gap-3 rounded-full bg-[#5f6858] px-7 py-4 text-sm font-bold uppercase tracking-[0.18em] text-white shadow-lg shadow-black/10 transition hover:bg-[#4b5446] disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {isSubmitting ? "Sending..." : "Send enquiry"}

@@ -1,3 +1,4 @@
+import { useEffect, useMemo, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Leaf, ChevronRight, ArrowRight, BadgeCheck } from "lucide-react";
@@ -15,44 +16,79 @@ import animalImageTwo from "../assets/animal-2.webp";
 import communityImage from "../assets/community.webp";
 import lectureImage from "../assets/lecture.webp";
 
+const slideshowImports = import.meta.glob(
+  "../assets/home-slideshow/*.{jpg,jpeg,png,webp,avif}",
+  {
+    eager: true,
+    import: "default",
+  },
+);
+
 export default function HomePage() {
+  const slideshowImages = useMemo(() => {
+    const images = Object.entries(slideshowImports)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([, src]) => src);
+
+    return images.length > 0 ? images : [animalImageTwo];
+  }, []);
+
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    if (slideshowImages.length <= 1) return undefined;
+
+    const timer = window.setInterval(() => {
+      setActiveSlide((current) => (current + 1) % slideshowImages.length);
+    }, 5500);
+
+    return () => window.clearInterval(timer);
+  }, [slideshowImages.length]);
+
   return (
     <div>
       <Seo {...pageSeo.home} />
 
-      <section className="relative isolate overflow-hidden">
-        <div className="absolute inset-0 -z-10 bg-[#d6d4cd]">
+      <section className="relative isolate min-h-screen overflow-hidden bg-stone-950">
+        {slideshowImages.map((image, index) => (
           <img
-            src={animalImageTwo}
-            alt="Protected wildlife in Zimbabwe"
+            key={image}
+            src={image}
+            alt=""
             width="1920"
             height="1080"
-            loading="eager"
-            fetchPriority="high"
+            loading={index === 0 ? "eager" : "lazy"}
+            fetchPriority={index === 0 ? "high" : "auto"}
             decoding="async"
-            className="h-full w-full object-cover opacity-[0.90]"
+            className={[
+              "absolute inset-0 h-full w-full object-cover transition-all duration-[1800ms] ease-out",
+              index === activeSlide
+                ? "scale-100 opacity-100"
+                : "scale-105 opacity-0",
+            ].join(" ")}
           />
+        ))}
 
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(245,244,239,0.94)_0%,rgba(245,244,239,0.78)_48%,rgba(245,244,239,0.35)_100%)]" />
-        </div>
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(14,18,12,0.84)_0%,rgba(14,18,12,0.68)_36%,rgba(14,18,12,0.28)_64%,rgba(14,18,12,0.16)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_34%,rgba(255,255,255,0.16),transparent_32%)]" />
 
-        <div className="mx-auto grid min-h-[78vh] max-w-7xl items-center gap-10 px-6 py-20 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-24">
+        <div className="relative z-10 flex min-h-screen items-center px-6 py-28 sm:px-8 lg:px-12 xl:px-16">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.65 }}
             className="max-w-3xl"
           >
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#5f6858]/20 bg-[#5f6858]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[#5f6858]">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-white backdrop-blur-md">
               <Leaf className="h-4 w-4" />
               Protecting Zimbabwe&apos;s wildlife heritage
             </div>
 
-            <h1 className="text-5xl font-black leading-tight tracking-tight text-[#3f473a] sm:text-6xl lg:text-7xl">
+            <h1 className="text-5xl font-black leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
               Imagine a world where they didn&apos;t need our protection.
             </h1>
 
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-700">
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/86">
               PROACTIVE Wildlife Protection Trust exists to strengthen
               pre-emptive, information-led anti-poaching and law-enforcement
               operations through strong, accountable partnerships in Zimbabwe.
@@ -61,83 +97,120 @@ export default function HomePage() {
             <div className="mt-8 flex flex-wrap gap-4">
               <NavLink
                 to="/partners"
-                className="inline-flex items-center gap-2 rounded-full bg-[#5f6858] px-6 py-3 font-semibold text-white transition hover:bg-[#4f5849]"
+                className="inline-flex items-center gap-2 rounded-full bg-[#5f6858] px-6 py-3 font-semibold text-white shadow-xl shadow-black/20 transition hover:bg-[#4f5849]"
               >
                 Explore partnerships <ChevronRight className="h-4 w-4" />
               </NavLink>
 
               <NavLink
                 to="/contact"
-                className="inline-flex items-center gap-2 rounded-full border border-black/10 px-6 py-3 font-semibold text-stone-900 transition hover:bg-black/5"
+                className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/12 px-6 py-3 font-semibold text-white backdrop-blur-md transition hover:bg-white/20"
               >
                 Contact us <ArrowRight className="h-4 w-4" />
               </NavLink>
             </div>
           </motion.div>
+        </div>
 
+        <div className="absolute hidden sm:flex bottom-6 left-1/2 z-20 flex -translate-x-1/2 gap-2 rounded-full border border-white/15 bg-black/25 px-3 py-2 backdrop-blur-md">
+          {slideshowImages.map((image, index) => (
+            <button
+              key={`${image}-dot`}
+              type="button"
+              aria-label={`Show slide ${index + 1}`}
+              onClick={() => setActiveSlide(index)}
+              className={[
+                "h-2.5 rounded-full transition-all",
+                index === activeSlide
+                  ? "w-8 bg-white"
+                  : "w-2.5 bg-white/45 hover:bg-white/75",
+              ].join(" ")}
+            />
+          ))}
+        </div>
+      </section>
+
+      <Section>
+        <div className="grid items-stretch gap-8 lg:grid-cols-[1.05fr_0.95fr]">
           <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.65, delay: 0.1 }}
-            className="relative"
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5 }}
+            className="overflow-hidden rounded-[2rem] border border-black/10 bg-white/25 p-4 shadow-2xl shadow-black/10 backdrop-blur"
           >
-            <div className="absolute -inset-4 rounded-[2rem] bg-[#5f6858]/10 blur-3xl" />
+            <div className="overflow-hidden rounded-[1.6rem] border border-black/10 bg-white">
+              <div className="h-80 overflow-hidden bg-[#d6d4cd] sm:h-96 lg:h-[420px]">
+                <img
+                  src={animalImageOne}
+                  alt="Wildlife protection focus"
+                  width="1200"
+                  height="900"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover"
+                />
+              </div>
 
-            <div className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-white/25 p-4 shadow-2xl shadow-black/10 backdrop-blur">
-              <div className="overflow-hidden rounded-[1.6rem] border border-black/10 bg-white">
-                <div className="relative h-72 overflow-hidden bg-[#d6d4cd] sm:h-80 lg:h-96">
-                  <img
-                    src={animalImageOne}
-                    alt="Wildlife protection focus"
-                    width="1200"
-                    height="900"
-                    loading="eager"
-                    fetchPriority="high"
-                    decoding="async"
-                    className="h-full w-full object-cover"
-                  />
+              <div className="bg-[#d6d4cd] p-6 sm:p-8">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#5f6858]">
+                      Executive focus
+                    </p>
 
-                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08)_0%,rgba(0,0,0,0.58)_100%)]" />
-
-                  <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/80">
-                          Executive focus
-                        </p>
-
-                        <h2 className="mt-2 max-w-xl text-2xl font-bold text-white">
-                          Pre-emptive protection through specialist response
-                          capability
-                        </h2>
-                      </div>
-
-                      <BadgeCheck className="mt-1 h-10 w-10 shrink-0 text-white/90" />
-                    </div>
+                    <h2 className="mt-2 max-w-xl text-3xl font-black leading-tight text-[#3f473a] sm:text-4xl">
+                      Pre-emptive protection through specialist response
+                      capability
+                    </h2>
                   </div>
-                </div>
 
-                <div className="grid gap-4 bg-[#4f5849] p-6 sm:grid-cols-2 sm:p-8">
-                  {stats.map((item) => (
-                    <div
-                      key={item.label}
-                      className="rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur"
-                    >
-                      <div className="text-2xl font-black text-white">
-                        {item.value}
-                      </div>
-
-                      <p className="mt-2 text-sm leading-6 text-white/85">
-                        {item.label}
-                      </p>
-                    </div>
-                  ))}
+                  <BadgeCheck className="mt-1 h-10 w-10 shrink-0 text-[#5f6858]" />
                 </div>
               </div>
             </div>
           </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.08 }}
+            className="flex flex-col justify-center rounded-[2rem] border border-black/10 bg-[#4f5849] p-6 shadow-xl shadow-black/10 sm:p-8"
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/70">
+              Impact model
+            </p>
+
+            <h2 className="mt-4 text-3xl font-black tracking-tight text-white sm:text-4xl">
+              Practical field support backed by accountable partnerships.
+            </h2>
+
+            <p className="mt-5 leading-8 text-white/82">
+              PROACTIVE supports protected areas through stronger operational
+              readiness, specialist response capability, information sharing,
+              and mentoring for anti-poaching teams.
+            </p>
+
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {stats.map((item) => (
+                <div
+                  key={item.label}
+                  className="rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur"
+                >
+                  <div className="text-3xl font-black text-white">
+                    {item.value}
+                  </div>
+
+                  <p className="mt-2 text-sm leading-6 text-white/85">
+                    {item.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
-      </section>
+      </Section>
 
       <Section>
         <SectionHeader
