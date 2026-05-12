@@ -1,8 +1,8 @@
 import {
+  AlertTriangle,
+  SearchCheck,
   Shield,
-  Users,
-  MapPinned,
-  Target,
+  Handshake,
   Landmark,
   Trees,
   HeartHandshake,
@@ -36,24 +36,44 @@ export const stats = [
 
 export const pillars = [
   {
+    icon: AlertTriangle,
+    title: "A critical moment for Zimbabwe",
+    body: "Zimbabwe is home to some of the world’s largest and last remaining populations of iconic endangered wildlife species, including African elephant, black rhino, white rhino, lion, leopard, and pangolin.",
+    highlights: [
+      "These species are under serious and increasing threat from poaching.",
+      "Illegal international trade in ivory, rhino horn, body parts, and other wildlife products continues to drive organised wildlife crime.",
+      "Zimbabwe has an opportunity to strengthen protection before losses become irreversible.",
+    ],
+  },
+  {
+    icon: SearchCheck,
+    title: "Intelligence-led prevention",
+    body: "As poaching pressure intensifies in neighbouring countries, intelligence suggests that organised syndicates are shifting focus towards Zimbabwe. PROACTIVE exists to help strengthen defences before the crisis escalates further.",
+    highlights: [
+      "Pre-emptive action is more effective than reacting after high-value animals have been lost.",
+      "Information-led protection improves the ability to identify threats, disrupt incursions, and support lawful intervention.",
+      "The model focuses on preparation, prevention, and specialist response capability.",
+    ],
+  },
+  {
     icon: Shield,
-    title: "Pre-emptive protection",
-    body: "A proactive, information-led model focused on preventing poaching before losses occur.",
+    title: "Lessons from past poaching waves",
+    body: "Southern Africa has experienced three major waves of rhino poaching: in the 1980s, the early 2000s, and a further significant increase since 2018. These periods show the importance of strong, trusted protection systems.",
+    highlights: [
+      "Experience has shown that high-value species need protection before syndicates become entrenched.",
+      "Successful anti-poaching work depends on accountable relationships and co-operation.",
+      "Conservationists, civil society, and government law-enforcement agencies all have a role to play.",
+    ],
   },
   {
-    icon: Users,
-    title: "Trusted partnerships",
-    body: "Built on accountable collaboration between law enforcement, conservancies, NGOs, and communities.",
-  },
-  {
-    icon: MapPinned,
-    title: "Lowveld focus",
-    body: "Phase 1 prioritises Zimbabwe's south-east Lowveld, home to critically important rhino and elephant populations.",
-  },
-  {
-    icon: Target,
-    title: "Operational capability",
-    body: "Training, equipping, mentoring, and supporting specialist teams for real-world anti-poaching response.",
+    icon: Handshake,
+    title: "Strengthening wider partnerships",
+    body: "PROACTIVE’s team has already assisted Zimbabwe’s private conservancies to establish relatively successful security systems on the ground. The next need is to strengthen law-enforcement resources and partnerships at a broader level outside the conservancies.",
+    highlights: [
+      "Support must extend beyond individual conservancy boundaries.",
+      "Law-enforcement resources need practical operational backing.",
+      "Broader partnerships can help connect conservancies, national agencies, technical experts, and conservation organisations.",
+    ],
   },
 ];
 
