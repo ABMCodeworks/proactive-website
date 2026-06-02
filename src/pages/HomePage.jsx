@@ -770,15 +770,6 @@ export default function HomePage() {
                   </div>
                 ))}
               </div>
-
-              <div className="mt-9">
-                <NavLink
-                  to="/partners"
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-[#3f473a] shadow-xl shadow-black/20 transition hover:bg-white/90"
-                >
-                  View partnership model <ChevronRight className="h-4 w-4" />
-                </NavLink>
-              </div>
             </div>
           </div>
         </div>
