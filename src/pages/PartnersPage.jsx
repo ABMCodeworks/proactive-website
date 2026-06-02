@@ -17,12 +17,12 @@ import { trustees, advisors } from "../data/siteData";
 import { pageSeo } from "../data/seoData";
 
 import communityImage from "../assets/community.webp";
-import animalImageOne from "../assets/animal-4.jpg";
-import animalImageTwo from "../assets/animal-5.jpg";
-import animalImageFour from "../assets/animal-6.jpg";
+import animalImageOne from "../assets/animal-4.webp";
+import animalImageTwo from "../assets/animal-5.webp";
+import animalImageFour from "../assets/animal-6.webp";
 
 import animalImageThree from "../assets/animal-3.webp";
-import lowveldImage from "../assets/lowveld-2.jpg";
+import lowveldImage from "../assets/lowveld-2.webp";
 
 import oakFoundationLogo from "../assets/partners/oak-foundation.webp";
 import internationalRhinoFoundationLogo from "../assets/partners/international-rhino-foundation.webp";
