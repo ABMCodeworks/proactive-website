@@ -125,11 +125,11 @@ export default function ContactPage() {
       />
 
       <Section>
-        <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="rounded-[2rem] border border-black/10 bg-white/30 p-8 md:p-10">
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="rounded-[2rem] border border-black/10 bg-white/30 p-8 shadow-xl shadow-black/5 backdrop-blur md:p-10">
             <h3 className="text-3xl font-black text-stone-900">Get in touch</h3>
 
-            <p className="mt-4 max-w-2xl leading-8 text-stone-700">
+            <p className="mt-4 max-w-3xl leading-8 text-stone-700">
               PROACTIVE is building stronger, more accountable partnerships for
               wildlife protection in Zimbabwe.
             </p>
@@ -268,7 +268,17 @@ export default function ContactPage() {
               What PROACTIVE stands for
             </p>
 
-            <div className="mt-6 space-y-4">
+            <h3 className="mt-4 text-3xl font-black leading-tight text-white">
+              Practical protection through trusted partnerships.
+            </h3>
+
+            <p className="mt-5 leading-8 text-white/76">
+              Every enquiry is an opportunity to strengthen the network of
+              people, knowledge, resources, and response capability needed to
+              protect Zimbabwe’s wildlife heritage.
+            </p>
+
+            <div className="mt-8 space-y-4">
               {[
                 "Professional partnerships between conservation stakeholders and law-enforcement agencies",
                 "Information-led anti-poaching and interdiction",

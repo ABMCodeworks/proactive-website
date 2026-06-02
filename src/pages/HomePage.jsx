@@ -20,8 +20,12 @@ import { pageSeo } from "../data/seoData";
 
 import animalImageOne from "../assets/animal-1.webp";
 import animalImageTwo from "../assets/animal-2.webp";
-import animalImageThree from "../assets/animal-3.webp";
+import animalImageThree from "../assets/animal-8.webp";
+import animalImageFive from "../assets/animal-7.webp";
 import lowveldImage from "../assets/lowveld.webp";
+import lowveldImageTwo from "../assets/lowveld-3.webp";
+import lowveldImageThree from "../assets/lowveld-4.webp";
+
 import lectureImage from "../assets/lecture.webp";
 
 const slideshowImports = import.meta.glob(
@@ -324,7 +328,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65 }}
-            className="max-w-3xl"
+            className="max-w-4xl"
           >
             <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-white backdrop-blur-md">
               <Leaf className="h-4 w-4" />
@@ -386,7 +390,7 @@ export default function HomePage() {
       </section>
 
       <Section>
-        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="grid items-center gap-12 xl:gap-16 lg:grid-cols-[1.05fr_0.95fr]">
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -395,11 +399,11 @@ export default function HomePage() {
           >
             <Eyebrow>Executive focus</Eyebrow>
 
-            <h2 className="mt-4 max-w-3xl text-4xl font-black leading-tight tracking-tight text-stone-900 sm:text-5xl">
+            <h2 className="mt-4 max-w-4xl text-4xl font-black leading-tight tracking-tight text-stone-900 sm:text-5xl">
               Pre-emptive protection through specialist response capability.
             </h2>
 
-            <p className="mt-6 max-w-2xl text-lg leading-9 text-stone-700">
+            <p className="mt-6 max-w-3xl text-lg leading-9 text-stone-700">
               Zimbabwe is home to some of southern Africa&apos;s most important
               endangered wildlife populations. As poaching pressure intensifies
               across the region, the country has an opportunity to strengthen
@@ -423,10 +427,10 @@ export default function HomePage() {
             className="relative"
           >
             <SmartImage
-              src={animalImageOne}
+              src={animalImageThree}
               alt="Wildlife protection focus"
               priority
-              wrapperClassName="h-[420px] rounded-[2rem] border border-black/10 bg-[#d6d4cd] shadow-2xl shadow-black/10"
+              wrapperClassName="h-[460px] rounded-[2rem] border border-black/10 bg-[#d6d4cd] shadow-2xl shadow-black/10"
               position="center"
             />
 
@@ -488,7 +492,84 @@ export default function HomePage() {
       </Section>
 
       <Section>
-        <div className="mx-auto max-w-4xl text-center">
+        <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch">
+          <div className="relative min-h-[520px] overflow-hidden rounded-[2.5rem] border border-black/10 bg-[#d6d4cd] shadow-2xl shadow-black/10">
+            <img
+              src={animalImageOne}
+              alt="Wildlife protection in Zimbabwe"
+              loading="lazy"
+              decoding="async"
+              className="h-full min-h-[520px] w-full object-cover"
+            />
+
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+
+            <div className="absolute bottom-0 left-0 right-0 p-7 sm:p-10">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/70">
+                Field protection
+              </p>
+
+              <h2 className="mt-3 max-w-3xl text-3xl font-black leading-tight text-white sm:text-4xl lg:text-5xl">
+                Protection that is practical, prepared, and present on the
+                ground.
+              </h2>
+
+              <p className="mt-5 max-w-2xl leading-8 text-white/80">
+                PROACTIVE’s work is focused on strengthening the real-world
+                systems, teams, relationships, and response capability needed
+                before wildlife crime escalates.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid gap-6">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-1">
+              <div className="overflow-hidden rounded-[2rem] border border-black/10 bg-[#d6d4cd] shadow-xl shadow-black/10">
+                <img
+                  src={lectureImage}
+                  alt="Training and mentoring session"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-[260px] w-full object-cover"
+                />
+
+                <div className="p-6">
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#5f6858]">
+                    Training
+                  </p>
+
+                  <h3 className="mt-3 text-2xl font-black leading-tight text-stone-900">
+                    Building readiness through mentoring and specialist support.
+                  </h3>
+                </div>
+              </div>
+
+              <div className="overflow-hidden rounded-[2rem] border border-black/10 bg-[#3f473a] shadow-xl shadow-black/10">
+                <img
+                  src={lowveldImageThree}
+                  alt="South-east Lowveld landscape"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-[260px] w-full object-cover opacity-90"
+                />
+
+                <div className="p-6">
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/60">
+                    Geographic focus
+                  </p>
+
+                  <h3 className="mt-3 text-2xl font-black leading-tight text-white">
+                    Focused support for high-value conservation landscapes.
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      <Section>
+        <div className="mx-auto max-w-5xl text-center">
           <Eyebrow>Why PROACTIVE</Eyebrow>
 
           <h2 className="mt-4 text-4xl font-black leading-tight tracking-tight text-stone-900 sm:text-5xl">
@@ -502,11 +583,11 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+        <div className="mt-12 grid gap-12 xl:gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <SmartImage
             src={animalImageTwo}
             alt="Endangered wildlife in Zimbabwe"
-            wrapperClassName="h-[520px] rounded-[2rem] border border-black/10 bg-[#d6d4cd] shadow-xl shadow-black/10"
+            wrapperClassName="h-[560px] rounded-[2rem] border border-black/10 bg-[#d6d4cd] shadow-xl shadow-black/10"
             position="center"
           />
 
@@ -544,7 +625,7 @@ export default function HomePage() {
       </Section>
 
       <Section>
-        <div className="grid gap-8 lg:grid-cols-3">
+        <div className="grid gap-10 xl:gap-14 lg:grid-cols-3">
           <div className="lg:col-span-1">
             <Eyebrow>The work</Eyebrow>
 
@@ -637,15 +718,15 @@ export default function HomePage() {
           <SmartImage
             src={lowveldImage}
             alt="Community conservation partnership"
-            wrapperClassName="min-h-[360px] rounded-[2rem] border border-black/10 bg-[#d6d4cd] shadow-xl shadow-black/10"
+            wrapperClassName="min-h-[420px] rounded-[2rem] border border-black/10 bg-[#d6d4cd] shadow-xl shadow-black/10"
             position="center"
           />
 
           <div className="grid gap-5">
             <SmartImage
-              src={lectureImage}
-              alt="Training and learning session"
-              wrapperClassName="min-h-[220px] rounded-[2rem] border border-black/10 bg-[#d6d4cd] shadow-xl shadow-black/10"
+              src={lowveldImageTwo}
+              alt="Lowveld image"
+              wrapperClassName="min-h-[240px] rounded-[2rem] border border-black/10 bg-[#d6d4cd] shadow-xl shadow-black/10"
               position="center"
             />
 
@@ -670,9 +751,9 @@ export default function HomePage() {
         <div className="overflow-hidden rounded-[2rem] border border-black/10 bg-[#3f473a] shadow-2xl shadow-black/10">
           <div className="grid lg:grid-cols-[1fr_1.05fr]">
             <SmartImage
-              src={animalImageThree}
+              src={animalImageFive}
               alt="Zimbabwe wildlife protection"
-              wrapperClassName="min-h-[320px] bg-[#d6d4cd] lg:min-h-[520px]"
+              wrapperClassName="min-h-[360px] bg-[#d6d4cd] lg:min-h-[560px]"
               position="center"
             />
 

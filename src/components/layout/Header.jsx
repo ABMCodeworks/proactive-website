@@ -13,7 +13,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-black/10 bg-[#d6d4cd]/90 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+      <div className="mx-auto flex w-full max-w-[1600px] items-center justify-between px-5 py-4 sm:px-8 lg:px-10">
         <NavLink to="/" onClick={closeMenu} className="flex items-center">
           <img
             src="/proactive-logo.webp"
@@ -27,7 +27,6 @@ export default function Header() {
           />
         </NavLink>
 
-        {/* Desktop menu */}
         <nav className="hidden items-center gap-2 md:flex">
           {navItems.map((item) => (
             <NavLink
@@ -46,7 +45,6 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Mobile menu button */}
         <button
           type="button"
           onClick={() => setIsOpen((current) => !current)}
@@ -58,10 +56,9 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile dropdown menu */}
       {isOpen ? (
-        <div className="border-t border-black/10 bg-[#d6d4cd] px-6 py-4 shadow-xl shadow-black/10 md:hidden">
-          <nav className="mx-auto flex max-w-7xl flex-col gap-2">
+        <div className="border-t border-black/10 bg-[#d6d4cd] px-5 py-4 shadow-xl shadow-black/10 sm:px-8 md:hidden">
+          <nav className="mx-auto flex w-full max-w-[1600px] flex-col gap-2">
             {navItems.map((item) => (
               <NavLink
                 key={item.to}

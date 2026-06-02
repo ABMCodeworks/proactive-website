@@ -11,13 +11,18 @@ import {
 
 import Section from "../components/ui/Section";
 import SectionHeader from "../components/ui/SectionHeader";
-import PageHero from "../components/ui/PageHero";
 import Seo from "../components/seo/Seo";
 
 import { trustees, advisors } from "../data/siteData";
 import { pageSeo } from "../data/seoData";
 
 import communityImage from "../assets/community.webp";
+import animalImageOne from "../assets/animal-4.jpg";
+import animalImageTwo from "../assets/animal-5.jpg";
+import animalImageFour from "../assets/animal-6.jpg";
+
+import animalImageThree from "../assets/animal-3.webp";
+import lowveldImage from "../assets/lowveld-2.jpg";
 
 import oakFoundationLogo from "../assets/partners/oak-foundation.webp";
 import internationalRhinoFoundationLogo from "../assets/partners/international-rhino-foundation.webp";
@@ -86,28 +91,28 @@ const partners = [
     website: "https://wildnet.org/wildlife-fund/rhino-recovery-fund/",
     logo: rhinoRecoveryFundLogo,
     description:
-      "The Rhino Recovery Fund is a global conservation funding initiative created by the Wildlife Conservation Network to support projects that protect and restore the world’s remaining rhino populations. Launched in 2020, the fund provides financial support to frontline conservation organisations working across Africa and Asia to address the major threats facing rhinos, particularly poaching driven by the illegal rhino horn trade and the loss of natural habitat. Rhino Recovery Fund invests in initiatives such as anti-poaching operations, wildlife crime prevention, habitat protection, and community engagement programmes that encourage local people to participate in rhino conservation. By directing donations and grants to effective conservation partners on the ground, the fund aims to strengthen rhino populations, protect key landscapes, and ensure long-term recovery of the species.",
+      "The Rhino Recovery Fund is a global conservation funding initiative created by the Wildlife Conservation Network to support projects that protect and restore the world’s remaining rhino populations. Launched in 2020, the fund provides financial support to frontline conservation organisations working across Africa and Asia to address the major threats facing rhinos, particularly poaching driven by the illegal rhino horn trade and the loss of natural habitat. Rhino Recovery Fund invests in initiatives such as anti-poaching operations, wildlife crime prevention, and habitat protection.",
   },
   {
     name: "Alinea International",
     website: "https://www.alineainternational.com/",
     logo: alineaInternationalLogo,
     description:
-      "Alinea International is a global international development consultancy that provides technical expertise and project management to support social, economic, and environmental development around the world. Founded in 1986, originally as Agriteam Canada, the organisation works with governments, multilateral institutions, private sector partners, and local communities to design and implement development programmes that improve livelihoods and strengthen institutions. Headquartered in Calgary, Alberta, Canada, the company has delivered hundreds of projects in more than 90 countries across sectors such as governance, gender equality, climate change, agriculture, education, economic growth, and peace and security. Many of its projects are funded by major international donors including the World Bank, United Nations, and European Commission, with the goal of creating sustainable development outcomes and strengthening local capacity.",
+      "Alinea International is a global international development consultancy that provides technical expertise and project management to support social, economic, and environmental development around the world. Founded in 1986, originally as Agriteam Canada, the organisation works with governments, multilateral institutions, private sector partners, and local communities to design and implement development programmes.",
   },
   {
     name: "Lowveld Rhino Trust",
     website: "https://www.lowveldrhinotrust.org/",
     logo: lowveldRhinoTrustLogo,
     description:
-      "The Lowveld Rhino Trust is a Zimbabwean conservation organisation dedicated to protecting and increasing populations of black and white rhinos, particularly in the south-eastern Lowveld region of Zimbabwe. The Trust works primarily in major wildlife areas such as Bubye Valley, which hold the majority of the country’s rhino population. Its work focuses on intensive rhino monitoring, veterinary care, translocations to safer habitats, community engagement, and supporting anti-poaching efforts to safeguard rhinos from illegal hunting. Lowveld Rhino Trust also conducts research and collaborates with conservation partners to build long-term support for wildlife conservation. By combining hands-on field management with community involvement and scientific monitoring, the organisation aims to expand secure rhino populations and ensure the long-term survival of the species in the region.",
+      "The Lowveld Rhino Trust is a Zimbabwean conservation organisation dedicated to protecting and increasing populations of black and white rhinos, particularly in the south-eastern Lowveld region of Zimbabwe. Its work focuses on intensive rhino monitoring, veterinary care, translocations to safer habitats, community engagement, and supporting anti-poaching efforts.",
   },
   {
     name: "Ezytrack Zimbabwe",
     website: "https://www.ezytrack.co.zw/",
     logo: ezytrackLogo,
     description:
-      "Ezytrack Zimbabwe is a Zimbabwe-based technology company that provides GPS vehicle tracking and fleet management solutions for businesses and individuals. Headquartered in Harare, the company uses real-time tracking technology and cloud-based platforms to help clients monitor vehicles, improve fleet efficiency, and enhance asset security. Its services include live vehicle tracking, driver behaviour monitoring, geofencing, and vehicle recovery support through 24-hour monitoring systems.",
+      "Ezytrack Zimbabwe is a Zimbabwe-based technology company that provides GPS vehicle tracking and fleet management solutions for businesses and individuals. Its services include live vehicle tracking, driver behaviour monitoring, geofencing, and vehicle recovery support through 24-hour monitoring systems.",
   },
   {
     name: "Zimbabwe Republic Police – MMFU",
@@ -382,13 +387,46 @@ export default function PartnersPage() {
   return (
     <div>
       <Seo {...pageSeo.partners} />
-      <PageHero
-        eyebrow="Partners"
-        title="Collaboration is at the centre of the PROACTIVE model"
-        body="PROACTIVE works alongside conservation funders, specialist organisations, technology partners, local trusts, and law-enforcement structures to strengthen wildlife protection in Zimbabwe."
-      />
+
+      <section className="relative isolate overflow-hidden bg-stone-950">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url(${animalImageOne})`,
+          }}
+        />
+
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(14,18,12,0.88)_0%,rgba(14,18,12,0.72)_42%,rgba(14,18,12,0.38)_72%,rgba(14,18,12,0.18)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_34%,rgba(255,255,255,0.14),transparent_32%)]" />
+
+        <div className="relative z-10 mx-auto flex min-h-[620px] w-full max-w-[1600px] items-center px-5 py-28 sm:px-8 lg:px-10">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65 }}
+            className="max-w-4xl"
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/70">
+              Partners
+            </p>
+
+            <h1 className="mt-5 text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl lg:text-7xl">
+              Collaboration is at the centre of the PROACTIVE model
+            </h1>
+
+            <p className="mt-6 max-w-3xl text-lg leading-9 text-white/82">
+              PROACTIVE works alongside conservation funders, specialist
+              organisations, technology partners, local trusts, and
+              law-enforcement structures to strengthen wildlife protection in
+              Zimbabwe.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
       <Section>
-        <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+        <div className="grid gap-10 xl:gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
           <div>
             <Eyebrow>Partnership approach</Eyebrow>
 
@@ -423,6 +461,7 @@ export default function PartnersPage() {
           </div>
         </div>
       </Section>
+
       <Section>
         <div className="overflow-hidden rounded-[2rem] border border-black/10 bg-[#4f5849] shadow-2xl shadow-black/10">
           <div className="grid lg:grid-cols-[1fr_1.05fr]">
@@ -430,7 +469,7 @@ export default function PartnersPage() {
               src={communityImage}
               alt="Conservation partnership and community engagement"
               priority
-              wrapperClassName="min-h-[340px] bg-[#d6d4cd] lg:min-h-[560px]"
+              wrapperClassName="min-h-[360px] bg-[#d6d4cd] lg:min-h-[600px]"
               position="center"
             />
 
@@ -464,9 +503,20 @@ export default function PartnersPage() {
           </div>
         </div>
       </Section>
+
       <Section>
-        <div className="overflow-hidden rounded-[2rem] border border-black/10 bg-[#4f5849] shadow-2xl shadow-black/10">
-          <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-[#4f5849] shadow-2xl shadow-black/10">
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-cover bg-center opacity-12"
+            style={{
+              backgroundImage: `url(${animalImageTwo})`,
+            }}
+          />
+
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(79,88,73,0.97)_0%,rgba(79,88,73,0.93)_45%,rgba(79,88,73,0.82)_100%)]" />
+
+          <div className="relative z-10 grid lg:grid-cols-[0.9fr_1.1fr]">
             <div className="p-7 sm:p-10 lg:p-12">
               <Eyebrow light>How it works</Eyebrow>
 
@@ -481,7 +531,7 @@ export default function PartnersPage() {
               </p>
             </div>
 
-            <div className="divide-y divide-white/10 border-t border-white/10 lg:border-l lg:border-t-0">
+            <div className="divide-y divide-white/10 border-t border-white/10 bg-black/5 lg:border-l lg:border-t-0">
               {partnershipApproach.map((item) => {
                 const Icon = item.icon;
 
@@ -520,8 +570,9 @@ export default function PartnersPage() {
           </div>
         </div>
       </Section>
+
       <Section>
-        <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+        <div className="grid gap-10 xl:gap-14 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
             <Eyebrow>Delivery focus</Eyebrow>
 
@@ -535,6 +586,15 @@ export default function PartnersPage() {
               training, operational readiness, reserve security, community
               co-operation, and public awareness.
             </p>
+
+            <div className="mt-8 overflow-hidden rounded-[2rem] border border-black/10 bg-[#d6d4cd] shadow-xl shadow-black/10">
+              <SmartImage
+                src={lowveldImage}
+                alt="Lowveld wildlife landscape"
+                wrapperClassName="min-h-[280px] bg-[#d6d4cd]"
+                position="center"
+              />
+            </div>
           </div>
 
           <div className="space-y-0">
@@ -576,6 +636,7 @@ export default function PartnersPage() {
           </div>
         </div>
       </Section>
+
       <Section>
         <SectionHeader
           eyebrow="Our partners"
@@ -589,6 +650,7 @@ export default function PartnersPage() {
           ))}
         </AnimatedGrid>
       </Section>
+
       <Section>
         <div>
           <div className="mb-10">
@@ -598,7 +660,7 @@ export default function PartnersPage() {
               Experienced leadership and oversight.
             </h2>
 
-            <p className="mt-5 text-lg leading-9 text-stone-700">
+            <p className="mt-5 max-w-5xl text-lg leading-9 text-stone-700">
               The trust&apos;s leadership brings together conservation
               management, rhino protection, field operations, and
               law-enforcement expertise.
@@ -627,46 +689,67 @@ export default function PartnersPage() {
             ))}
           </div>
         </div>
-      </Section>{" "}
+      </Section>
+
       <Section>
-        <div className="overflow-hidden rounded-[2rem] border border-black/10 bg-[#d6d4cd] shadow-xl shadow-black/10">
-          <div className="grid lg:grid-cols-[0.8fr_1.2fr]">
-            <div className="p-7 sm:p-10">
-              <Eyebrow>Technical advisory team</Eyebrow>
+        <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
+          <SmartImage
+            src={animalImageFour}
+            alt="Wildlife protection and conservation work"
+            wrapperClassName="min-h-[360px] rounded-[2rem] border border-black/10 bg-[#d6d4cd] shadow-xl shadow-black/10"
+            position="center"
+          />
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-[#3f473a] sm:text-4xl">
-                Specialist knowledge supporting delivery.
-              </h2>
+          <div className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-[#d6d4cd] shadow-xl shadow-black/10">
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-cover bg-center opacity-10"
+              style={{
+                backgroundImage: `url(${animalImageThree})`,
+              }}
+            />
 
-              <p className="mt-5 leading-8 text-stone-700">
-                The advisory team spans legal, veterinary, conservation,
-                strategy, and international law expertise.
-              </p>
-            </div>
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(214,212,205,0.98)_0%,rgba(214,212,205,0.92)_50%,rgba(214,212,205,0.76)_100%)]" />
 
-            <div className="divide-y divide-black/10 border-t border-black/10 bg-white/20 lg:border-l lg:border-t-0">
-              {advisors.map((advisor) => (
-                <div
-                  key={advisor}
-                  className="px-7 py-5 text-sm leading-7 text-stone-700 sm:px-8"
-                >
-                  {advisor}
-                </div>
-              ))}
+            <div className="relative z-10 grid lg:grid-cols-[0.8fr_1.2fr]">
+              <div className="p-7 sm:p-10">
+                <Eyebrow>Technical advisory team</Eyebrow>
+
+                <h2 className="mt-4 text-3xl font-black leading-tight text-[#3f473a] sm:text-4xl">
+                  Specialist knowledge supporting delivery.
+                </h2>
+
+                <p className="mt-5 leading-8 text-stone-700">
+                  The advisory team spans legal, veterinary, conservation,
+                  strategy, and international law expertise.
+                </p>
+              </div>
+
+              <div className="divide-y divide-black/10 border-t border-black/10 bg-white/20 lg:border-l lg:border-t-0">
+                {advisors.map((advisor) => (
+                  <div
+                    key={advisor}
+                    className="px-7 py-5 text-sm leading-7 text-stone-700 sm:px-8"
+                  >
+                    {advisor}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </Section>
+
       <Section>
         <div className="rounded-[2rem] border border-black/10 bg-[#3f473a] p-7 text-center shadow-2xl shadow-black/10 sm:p-10">
           <ShieldCheck className="mx-auto h-10 w-10 text-white/70" />
 
-          <h2 className="mx-auto mt-5 max-w-3xl text-3xl font-black leading-tight text-white sm:text-4xl">
+          <h2 className="mx-auto mt-5 max-w-4xl text-3xl font-black leading-tight text-white sm:text-4xl">
             Strong partnerships are the foundation of pre-emptive wildlife
             protection.
           </h2>
 
-          <p className="mx-auto mt-5 max-w-2xl leading-8 text-white/75">
+          <p className="mx-auto mt-5 max-w-3xl leading-8 text-white/75">
             PROACTIVE exists to help connect the people, systems, knowledge, and
             resources needed to protect Zimbabwe&apos;s wildlife heritage before
             the cost of inaction becomes irreversible.
