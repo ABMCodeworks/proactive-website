@@ -344,22 +344,6 @@ export default function HomePage() {
               information-led anti-poaching and law-enforcement operations
               through accountable partnerships in Zimbabwe.
             </p>
-
-            <div className="mt-8 flex flex-wrap gap-4">
-              <NavLink
-                to="/partners"
-                className="inline-flex items-center gap-2 rounded-full bg-[#5f6858] px-6 py-3 font-semibold text-white shadow-xl shadow-black/20 transition hover:bg-[#4f5849]"
-              >
-                Explore partnerships <ChevronRight className="h-4 w-4" />
-              </NavLink>
-
-              <NavLink
-                to="/contact"
-                className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/12 px-6 py-3 font-semibold text-white backdrop-blur-md transition hover:bg-white/20"
-              >
-                Contact us <ArrowRight className="h-4 w-4" />
-              </NavLink>
-            </div>
           </motion.div>
         </div>
 
