@@ -62,17 +62,22 @@ export default function Footer() {
 
       <div className="border-t border-white/10 px-5 py-5 text-center text-xs leading-6 text-white/42">
         <p>© {new Date().getFullYear()} PROACTIVE Wildlife Protection Trust · With sincere thanks to Jenny Hishin for the use of her photographs</p>
-        <p>
-          African hoopoe photograph by{" "}
-          <a href="https://commons.wikimedia.org/wiki/File:African_Hoopoe_(Upupa_africana)_(52014881391).jpg" target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-white">
-            Bernard DUPONT
-          </a>{" "}
-          via Wikimedia Commons ·{" "}
-          <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-white">
-            CC BY-SA 2.0
-          </a>{" "}
-          · Cropped and converted to WebP
-        </p>
+        <details className="mx-auto mt-1 w-fit">
+          <summary className="cursor-pointer list-none underline decoration-white/20 underline-offset-2 hover:text-white">
+            Photography credits
+          </summary>
+          <p className="mt-2 max-w-2xl text-white/38">
+            African hoopoe photograph by{" "}
+            <a href="https://commons.wikimedia.org/wiki/File:African_Hoopoe,_Upupa_africana_(Upupa_epops)_at_Mapungubwe_National_Park,_Limpopo,_South_Africa_(18167794300).jpg" target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-white">
+              Derek Keats
+            </a>{" "}
+            via Wikimedia Commons ·{" "}
+            <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-white">
+              CC BY 2.0
+            </a>{" "}
+            · Cropped and converted to WebP
+          </p>
+        </details>
       </div>
     </footer>
   );

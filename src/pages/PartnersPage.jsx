@@ -8,18 +8,20 @@ import { pageSeo } from "../data/seoData";
 
 import heroImage from "../assets/partners-hero.webp";
 import zrpLogo from "../assets/partners/zrp-mffu.webp";
-import oakLogo from "../assets/partners/oak-foundation.webp";
+import oakLogo from "../assets/partners/oak-foundation.svg";
 import alineaLogo from "../assets/partners/alinea-international.webp";
 import irfLogo from "../assets/partners/international-rhino-foundation.webp";
 import lrtLogo from "../assets/partners/lowveld-rhino-trust.webp";
 import ezytrackLogo from "../assets/partners/ezytrack.webp";
+import stopRhinoPoachingLogo from "../assets/partners/stop-rhino-poaching.webp";
 import fieldBriefing from "../assets/home-slideshow/slide-6.webp";
 import sharedInformation from "../assets/home-slideshow/slide-20.webp";
 import radioCoordination from "../assets/home-slideshow/slide-23.webp";
 
 const partners = [
   {
-    name: "Zimbabwe Republic Police – MMFU",
+    name: "Zimbabwe Republic Police",
+    subtitle: "MFFU",
     type: "Law-enforcement partner",
     website: "",
     logo: zrpLogo,
@@ -50,7 +52,7 @@ const partners = [
     name: "Stop Rhino Poaching",
     type: "Conservation partner",
     website: "https://www.stoprhinopoaching.com/",
-    logo: null,
+    logo: stopRhinoPoachingLogo,
     description: "Stop Rhino Poaching is a specialist conservation organisation supporting strategic, needs-led interventions that strengthen rhino protection in Africa.",
   },
   {
@@ -122,6 +124,9 @@ export default function PartnersPage() {
                   )}
                 </div>
                 <h2 className="mt-5 font-serif text-3xl text-[#3f473a]">{partner.name}</h2>
+                {partner.subtitle ? (
+                  <p className="mt-1 text-sm font-black uppercase tracking-[0.16em] text-[#5f6858]">{partner.subtitle}</p>
+                ) : null}
                 {partner.website ? (
                   <a href={partner.website} target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.13em] text-[#5f6858] underline underline-offset-4">
                     Visit website <ArrowUpRight className="h-4 w-4" />

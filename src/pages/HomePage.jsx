@@ -12,19 +12,21 @@ import woodlandCanopy from "../assets/home-slideshow/slide-7.webp";
 import communityGathering from "../assets/home-slideshow/slide-11.webp";
 import elephantLandscape from "../assets/home-slideshow/slide-26.webp";
 import zrpLogo from "../assets/partners/zrp-mffu.webp";
-import oakLogo from "../assets/partners/oak-foundation.webp";
+import oakLogo from "../assets/partners/oak-foundation.svg";
 import alineaLogo from "../assets/partners/alinea-international.webp";
 import irfLogo from "../assets/partners/international-rhino-foundation.webp";
 import lrtLogo from "../assets/partners/lowveld-rhino-trust.webp";
 import ezytrackLogo from "../assets/partners/ezytrack.webp";
+import stopRhinoPoachingLogo from "../assets/partners/stop-rhino-poaching.webp";
 
 const partnerLogos = [
-  [zrpLogo, "Zimbabwe Republic Police – MMFU"],
+  [zrpLogo, "Zimbabwe Republic Police – MFFU"],
   [oakLogo, "Oak Foundation"],
   [alineaLogo, "Alinea International"],
   [irfLogo, "International Rhino Foundation"],
   [lrtLogo, "Lowveld Rhino Trust"],
   [ezytrackLogo, "Ezytrack Zimbabwe"],
+  [stopRhinoPoachingLogo, "StopRhinoPoaching.com"],
 ];
 
 export default function HomePage() {
@@ -185,7 +187,7 @@ export default function HomePage() {
               Meet our partners
             </NavLink>
           </div>
-          <div className="mt-9 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+          <div className="mt-9 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-7">
             {partnerLogos.map(([src, name]) => (
               <div key={name} className="flex min-h-24 items-center justify-center rounded-xl bg-white px-4 py-5">
                 <img src={src} alt={name} className="max-h-14 max-w-full object-contain" />

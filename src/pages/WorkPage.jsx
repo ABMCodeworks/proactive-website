@@ -201,7 +201,7 @@ export default function WorkPage() {
               <CheckCircle2 className="h-5 w-5 text-[#5f6858]" /> Evidence-led and locally accountable
             </div>
           </div>
-          <img src={sectorImage} alt="An African hoopoe perched beside a tree" loading="lazy" decoding="async" className="h-full min-h-[400px] w-full object-cover" />
+          <img src={sectorImage} alt="An upright African hoopoe perched on a branch with its crest raised" loading="lazy" decoding="async" className="h-full min-h-[400px] w-full object-cover" />
         </div>
       </Section>
 
