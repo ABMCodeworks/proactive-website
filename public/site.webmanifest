@@ -4,8 +4,8 @@
     "description": "Information-led wildlife protection and conservation partnerships in Zimbabwe.",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#f5f4ef",
-    "theme_color": "#5f6858",
+    "background_color": "#ecebe7",
+    "theme_color": "#3f473a",
     "icons": [
         {
             "src": "/favicon.ico",

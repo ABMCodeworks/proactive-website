@@ -3,8 +3,8 @@ export const siteSeo = {
   siteUrl: "https://proactivewildlife.org",
   defaultTitle: "PROACTIVE Wildlife Protection Trust",
   defaultDescription:
-    "PROACTIVE Wildlife Protection Trust strengthens information-led wildlife protection, anti-poaching partnerships, and conservation collaboration in Zimbabwe.",
-  defaultImage: "/og-image.jpg",
+    "PROACTIVE connects law enforcement, conservation organisations and protected areas to strengthen wildlife protection in Zimbabwe.",
+  defaultImage: "/og-image.webp",
   twitterHandle: "",
 };
 
@@ -12,21 +12,37 @@ export const pageSeo = {
   home: {
     title: "PROACTIVE Wildlife Protection Trust",
     description:
-      "PROACTIVE Wildlife Protection Trust strengthens pre-emptive, information-led anti-poaching and law-enforcement operations through accountable conservation partnerships in Zimbabwe.",
+      "A Zimbabwean PVO strengthening wildlife protection through trusted partnerships, information sharing and co-ordinated action.",
     path: "/",
   },
-
+  about: {
+    title: "About | PROACTIVE Wildlife Protection Trust",
+    description:
+      "Learn why PROACTIVE was established, and discover our vision, mission and values for lasting conservation outcomes.",
+    path: "/about",
+  },
+  work: {
+    title: "Our Work | PROACTIVE Wildlife Protection Trust",
+    description:
+      "See how PROACTIVE connects law enforcement, protected areas and conservation organisations to protect Zimbabwe’s wildlife.",
+    path: "/our-work",
+  },
+  involved: {
+    title: "Get Involved | PROACTIVE Wildlife Protection Trust",
+    description:
+      "Partner with, support or donate to PROACTIVE Wildlife Protection Trust.",
+    path: "/get-involved",
+  },
   partners: {
     title: "Partners | PROACTIVE Wildlife Protection Trust",
     description:
-      "Meet the conservation funders, specialist organisations, technology partners, local trusts, law-enforcement structures, trustees, and advisors supporting PROACTIVE Wildlife Protection Trust.",
+      "Meet the law-enforcement, funding, conservation, development and technology partners supporting PROACTIVE’s work.",
     path: "/partners",
   },
-
-  contact: {
-    title: "Contact | PROACTIVE Wildlife Protection Trust",
+  governance: {
+    title: "Governance | PROACTIVE Wildlife Protection Trust",
     description:
-      "Contact PROACTIVE Wildlife Protection Trust for partnership discussions, conservation support, anti-poaching collaboration, or general enquiries in Zimbabwe.",
-    path: "/contact",
+      "Explore PROACTIVE’s PVO status, accountability, trustees, specialist advisors and conservation partners.",
+    path: "/governance",
   },
 };

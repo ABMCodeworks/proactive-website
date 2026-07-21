@@ -1,18 +1,28 @@
-export default function PageHero({ eyebrow, title, body }) {
+import { motion } from "framer-motion";
+
+export default function PageHero({ eyebrow, title, body, image, imageAlt, position = "center" }) {
   return (
-    <section className="mx-auto w-full max-w-[1600px] px-5 pt-16 sm:px-8 lg:px-10 lg:pt-20">
-      <div className="overflow-hidden rounded-[2rem] border border-black/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.52),rgba(255,255,255,0.28)),linear-gradient(135deg,#ecebe7_0%,#e5e4df_55%,#dddcd6_100%)] px-8 py-14 shadow-xl shadow-black/5 md:px-12 md:py-16 lg:px-14">
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#5f6858]">
-          {eyebrow}
-        </p>
+    <section className="relative isolate min-h-[620px] overflow-hidden bg-[#3f473a]">
+      <img
+        src={image}
+        alt={imageAlt}
+        className="absolute inset-0 h-full w-full object-cover"
+        style={{ objectPosition: position }}
+      />
 
-        <h1 className="mt-4 max-w-5xl text-4xl font-black leading-tight text-[#4f5849] sm:text-5xl lg:text-6xl">
-          {title}
-        </h1>
-
-        <p className="mt-5 max-w-4xl text-lg leading-8 text-stone-700">
-          {body}
-        </p>
+      <div className="relative z-10 mx-auto flex min-h-[620px] w-full max-w-[1480px] items-end px-5 sm:px-8 lg:px-10">
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55 }}
+          className="max-w-3xl bg-[#ecebe7]/96 px-7 py-10 text-[#3f473a] sm:px-10 sm:py-12 lg:px-14 lg:py-14"
+        >
+          <p className="text-xs font-black uppercase tracking-[0.24em] text-[#5f6858]">{eyebrow}</p>
+          <h1 className="mt-5 max-w-3xl font-serif text-5xl leading-[0.98] tracking-[-0.035em] sm:text-6xl lg:text-7xl">
+            {title}
+          </h1>
+          <p className="mt-7 max-w-2xl text-base leading-8 text-[#596258] sm:text-lg">{body}</p>
+        </motion.div>
       </div>
     </section>
   );

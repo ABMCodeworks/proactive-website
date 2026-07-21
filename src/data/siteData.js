@@ -1,118 +1,58 @@
 import {
-  AlertTriangle,
-  SearchCheck,
-  Shield,
+  Binoculars,
   Handshake,
-  Landmark,
-  Trees,
-  HeartHandshake,
+  Radio,
+  ShieldCheck,
 } from "lucide-react";
 
 export const navItems = [
   { to: "/", label: "Home" },
+  { to: "/about", label: "About" },
+  { to: "/our-work", label: "Our Work" },
   { to: "/partners", label: "Partners" },
-  { to: "/contact", label: "Contact Us" },
+  { to: "/get-involved", label: "Get Involved" },
+  { to: "/governance", label: "Governance" },
 ];
 
-export const stats = [
+export const impactFacts = [
   {
     value: "90%+",
-    label:
-      "of Zimbabwe's rhino population represented in the south-east Lowveld focus area",
-  },
-  {
-    value: "Phase 1",
-    label: "centred on the wildlife-rich south-east Lowveld of Zimbabwe",
-  },
-  {
-    value: "3",
-    label: "core stakeholder groups in the partnership model",
+    label: "of Zimbabwe’s rhino population is found in our initial south-east Lowveld focus area",
   },
   {
     value: "35 years",
-    label: "of combined experience leveraged by the core team",
+    label: "of frontline conservation and protection experience within the core team",
+  },
+  {
+    value: "1 network",
+    label: "connecting law enforcement, protected areas and conservation organisations",
   },
 ];
 
-export const pillars = [
+export const workAreas = [
   {
-    icon: AlertTriangle,
-    title: "A critical moment for Zimbabwe",
-    body: "Zimbabwe is home to some of the world’s largest and last remaining populations of iconic endangered wildlife species, including African elephant, black rhino, white rhino, lion, leopard, and pangolin.",
-    highlights: [
-      "These species are under serious and increasing threat from poaching.",
-      "Illegal international trade in ivory, rhino horn, body parts, and other wildlife products continues to drive organised wildlife crime.",
-      "Zimbabwe has an opportunity to strengthen protection before losses become irreversible.",
-    ],
+    icon: Radio,
+    number: "01",
+    title: "Information sharing",
+    body: "Create trusted channels that help partners identify threats earlier and co-ordinate a lawful response.",
   },
   {
-    icon: SearchCheck,
-    title: "Intelligence-led prevention",
-    body: "As poaching pressure intensifies in neighbouring countries, intelligence suggests that organised syndicates are shifting focus towards Zimbabwe. PROACTIVE exists to help strengthen defences before the crisis escalates further.",
-    highlights: [
-      "Pre-emptive action is more effective than reacting after high-value animals have been lost.",
-      "Information-led protection improves the ability to identify threats, disrupt incursions, and support lawful intervention.",
-      "The model focuses on preparation, prevention, and specialist response capability.",
-    ],
-  },
-  {
-    icon: Shield,
-    title: "Lessons from past poaching waves",
-    body: "Southern Africa has experienced three major waves of rhino poaching: in the 1980s, the early 2000s, and a further significant increase since 2018. These periods show the importance of strong, trusted protection systems.",
-    highlights: [
-      "Experience has shown that high-value species need protection before syndicates become entrenched.",
-      "Successful anti-poaching work depends on accountable relationships and co-operation.",
-      "Conservationists, civil society, and government law-enforcement agencies all have a role to play.",
-    ],
+    icon: ShieldCheck,
+    number: "02",
+    title: "Operational readiness",
+    body: "Strengthen specialist teams through practical training, equipment, mentoring and clear procedures.",
   },
   {
     icon: Handshake,
-    title: "Strengthening wider partnerships",
-    body: "PROACTIVE’s team has already assisted Zimbabwe’s private conservancies to establish relatively successful security systems on the ground. The next need is to strengthen law-enforcement resources and partnerships at a broader level outside the conservancies.",
-    highlights: [
-      "Support must extend beyond individual conservancy boundaries.",
-      "Law-enforcement resources need practical operational backing.",
-      "Broader partnerships can help connect conservancies, national agencies, technical experts, and conservation organisations.",
-    ],
-  },
-];
-
-export const partnerGroups = [
-  {
-    icon: Landmark,
-    title: "ZRP Special Response Team (SRT)",
-    description:
-      "A hand-picked, highly trained police unit working with the Zimbabwe Republic Police to strengthen intelligence gathering, response capability, lawful intervention, and co-ordinated anti-poaching operations.",
-    bullets: [
-      "Jurisdiction across private reserves and national parks in Zimbabwe",
-      "Police-led response to poaching incursions",
-      "Cross-training with scouts, rangers, and partner teams",
-      "Links to prosecutors, cyber unit, ballistics, and transboundary agencies",
-    ],
+    number: "03",
+    title: "Partnership building",
+    body: "Bring public agencies, protected areas, technical experts and funders around shared priorities.",
   },
   {
-    icon: Trees,
-    title: "Private Conservancies",
-    description:
-      "Operational collaboration with private conservancies to improve strategy, training, refresher courses, selection processes, and community engagement linked to conservation outcomes.",
-    bullets: [
-      "Anti-poaching strategy advisory",
-      "Joint operations and refresher courses",
-      "Support tailored to each area",
-      "Facilitated engagement with neighbouring communities",
-    ],
-  },
-  {
-    icon: HeartHandshake,
-    title: "Conservation Organisations",
-    description:
-      "Partnerships with conservation NGOs and related organisations to provide technical support, shared expertise, and broader public awareness around wildlife protection.",
-    bullets: [
-      "Technical expertise for anti-poaching initiatives",
-      "Shared conservation awareness campaigns",
-      "Support for strong local collaboration",
-      "Broader conservation alignment across stakeholders",
-    ],
+    icon: Binoculars,
+    number: "04",
+    title: "Long-term resilience",
+    body: "Support the fauna, flora, habitats and neighbouring communities that make conservation landscapes viable.",
   },
 ];
 
@@ -120,35 +60,38 @@ export const trustees = [
   {
     name: "Mike Ball",
     role: "CEO – PROACTIVE Wildlife Protection",
-    bio: "Zimbabwean conservation leader with operational anti-poaching, intelligence, training, and law-enforcement collaboration experience.",
+    bio: "Mike is Zimbabwean born and bred. His father was a regional warden and then chief warden of Zimbabwe National Parks and Wildlife. Mike’s formative years were spent in wilderness areas of Zimbabwe where he became passionate about wildlife and conservation. After serving in the British Royal Marines Commandos for five years, where he was extensively trained, Mike returned to Zimbabwe and worked at The Malilangwe Trust as Security Manager. His responsibilities included managing and coordinating a scout force of 90 scouts; selecting, training and mentoring new recruits; managing daily security operations; liaising with local communities on security issues; working alongside the ZRP on rhino anti-poaching operations; and building and maintaining an intelligence network. He also initiated and oversaw the renowned Junior Ranger Programme, which cultivates and inspires youth from surrounding communities. Due to strong relationships with government agencies and an effective intelligence programme, Mike and the Malilangwe scouts were permitted to operate in other areas of Zimbabwe alongside the Zimbabwe Republic Police, resulting in many successful operations. As rhino poaching increased in neighbouring countries, Mike left The Malilangwe Trust in 2022 after 15 years of service to work with the Tikki Hywood Foundation, where he mentored and trained detectives in all aspects of dealing with illegal wildlife trade. Recognising that more needed to be done to empower Police in anti-poaching operations and close the gap in protection offered to wildlife and conservancies, Mike left in 2024 to establish PROACTIVE. Mike manages the selection, training and support of the ZRP model anti-poaching unit, oversees the intelligence network and convenes stakeholders to develop models for collaboration between private conservancies, state agencies, public-private partnerships, local communities and cross-border agencies.",
   },
   {
     name: "Mark Saunders",
     role: "CEO – The Malilangwe Trust",
-    bio: "Experienced conservation executive with deep roots in Zimbabwe and long-standing leadership across major conservation properties and stakeholder relationships.",
+    bio: "Mark was born in Triangle, Zimbabwe, where he grew up and lived for the first 26 years of his life. As a youngster, he spent much of his free time in the bush, visiting Gonarezhou National Park and Lone Star Ranch, which later became The Malilangwe Trust. Mark was educated at Murray McDougal School and then Falcon College, where he was Head Boy in 1987. He went on to attain a Bachelor of Social Science at Rhodes University in South Africa, followed by a diploma in tobacco culture from Blackfordby Institute. Mark farmed tobacco for 10 years before being appointed Executive Director of The Malilangwe Trust in 2010, and in 2023 he took on the added responsibility of overseeing the operations of other conservation properties in Mozambique, Rwanda, Tanzania, Zambia and Zimbabwe. Mark has always had a passion for conservation, perhaps as a legacy from his childhood. He is dedicated to growing strong relationships with neighbours, communities and stakeholders. He is currently a board member of the Gonarezhou Conservation Trust and is the Deputy Chairman of the Falcon School Board.",
   },
   {
     name: "Howard Hunter",
     role: "CEO – Bubye Valley Conservancy",
-    bio: "Conservation manager with decades of field and leadership experience in Zimbabwe and Mozambique.",
+    bio: "Howard is the Director of Bubye Valley Conservancy (BVC), which is situated in the central southern Lowveld of Zimbabwe. Born in Zimbabwe and raised on a farm in Marondera, Howard began his career in the conservation industry by working for a wildlife translocation unit prior to joining Bubye Valley Conservancy in 1996, where he managed the northern sections during the early development of the conservancy. In 2004 Howard moved to Mozambique to develop and run a large CAMPFIRE (Communal Areas Management Programme for Indigenous Resources) initiative for a group of foreign investors. In November 2018 Howard was asked to represent a new shareholder of BVC and was then offered a full-time position as Director of the conservancy in 2019. Howard has 30 years of conservation management experience which he brings to the Trust.",
   },
   {
     name: "Lovemore Mangwashu",
     role: "Operations Co-ordinator – Lowveld Rhino Trust",
-    bio: "Former National Parks ranger and chief warden with broad logistical, rhino security, government liaison, and field operations experience.",
+    bio: "Lovemore began his career at the then Department of National Parks and Wildlife Management as a ranger, where he gained his broad core skillset while stationed across various parks within Zimbabwe, progressing through the ranks to Chief Warden. In 2004 he joined the World Wildlife Fund for Nature (WWF) as Operations Co-ordinator, where he was responsible for rhino security, government liaison, procurement and infrastructure, whilst also participating in rhino field operations. Since 2009, Lovemore has worked with the Lowveld Rhino Trust, where he continues to play a pivotal role in logistical operations country-wide. Lovemore brings a wealth of local and historical experience to the team.",
   },
   {
     name: "Commissioner Crispen Charumbira",
-    role: "Chief Director, Criminal Investigations Department",
-    bio: "Senior law-enforcement leader with strong criminal investigation and wildlife protection experience.",
+    role: "Officer Commanding Police, Masvingo Province – Zimbabwe Republic Police",
+    bio: "Crispen Charumbira was born in rural Chipinge and completed his schooling in Masvingo. He joined the Zimbabwe Republic Police Service in 1997 under the then two-year programme. Crispen progressed within the Service and joined the Criminal Investigation Department (CID), where he was part of the Special Investigation team at CID headquarters from 2003. He rose through the ranks and headed CID Masvingo Province until 2013, when he was promoted to the rank of Assistant Commissioner and transferred to Harare to head the Commercial Crimes Division. In 2018 he was promoted to Commissioner and became Chief Director CID. In 2023 Crispen transferred to Masvingo Province as Officer Commanding, a post he still holds. Crispen brings a wealth of knowledge and experience in all aspects of law enforcement, including wildlife protection.",
   },
 ];
 
 export const advisors = [
-  "George Lock – Senior Legal Practitioner",
+  "George Lock – Senior legal practitioner",
   "Hugo van der Westhuizen – Conservation Director, Zimbabwe and Mozambique, Frankfurt Zoological Society",
-  "Dr Chap Masterson – Wildlife Veterinarian and SAT-WILD Programmes Co-ordinator",
+  "Dr Chap Masterson – Wildlife veterinarian and SAT-WILD Programmes Co-ordinator",
   "Simon Capon – Director, Gonarezhou Conservation Trust",
-  "More Blessing Rusere – International Law Specialist",
-  "Jennifer Conaghan – Rhino Behavioural Specialist and Strategy Development",
+  "More Blessing Rusere – LLB Honours, University of Buckingham, UK; Postgraduate Diploma in International Law",
+  "Jennifer Conaghan – Rhino behavioural specialist and strategy development",
+  "Raoul du Toit – Rhino conservation specialist",
+  "Elise – Specialist advisor",
+  "Wellington – Legal advisor",
 ];
