@@ -105,8 +105,10 @@ export default function ContactPage() {
               <article key={way.title} className="overflow-hidden rounded-[1.7rem] border border-[#3f473a]/10 bg-white/45">
                 <img src={way.image} alt={way.imageAlt} loading="lazy" decoding="async" className="h-52 w-full object-cover" />
                 <div className="p-7">
-                  <Icon className="h-7 w-7 text-[#5f6858]" />
-                  <h3 className="mt-8 font-serif text-3xl text-[#3f473a]">{way.title}</h3>
+                  <div className="flex items-center gap-3">
+                    <Icon className="h-7 w-7 shrink-0 text-[#5f6858]" />
+                    <h3 className="font-serif text-3xl text-[#3f473a]">{way.title}</h3>
+                  </div>
                   <p className="mt-4 text-sm leading-7 text-[#596258]">{way.body}</p>
                 </div>
               </article>

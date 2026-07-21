@@ -98,7 +98,8 @@ export default function GovernancePage() {
                   <h3 className="mt-5 font-serif text-4xl">{person.name}</h3>
                   <p className="mt-2 text-xs font-bold uppercase leading-6 tracking-[0.1em] text-white/45">{person.role}</p>
                 </div>
-                <p className="mt-6 text-base leading-8 text-white/68">{person.bio}</p>
+                <p className="mt-6 text-lg leading-8 text-white/85">{person.summary}</p>
+                {person.bio ? <p className="mt-4 text-base leading-8 text-white/68">{person.bio}</p> : null}
               </article>
             ))}
           </div>

@@ -10,7 +10,7 @@ import { pageSeo } from "../data/seoData";
 
 import heroImage from "../assets/animal-4.webp";
 import landscapeImage from "../assets/home-slideshow/slide-25.webp";
-import sectorImage from "../assets/home-slideshow/slide-17.webp";
+import sectorImage from "../assets/african-hoopoe.webp";
 import fieldCoordination from "../assets/home-slideshow/slide-15.webp";
 import canineTeam from "../assets/home-slideshow/slide-16.webp";
 import fieldTechnology from "../assets/home-slideshow/slide-22.webp";
@@ -201,7 +201,7 @@ export default function WorkPage() {
               <CheckCircle2 className="h-5 w-5 text-[#5f6858]" /> Evidence-led and locally accountable
             </div>
           </div>
-          <img src={sectorImage} alt="Conservation personnel and a detection dog working in the field" loading="lazy" decoding="async" className="h-full min-h-[400px] w-full object-cover" />
+          <img src={sectorImage} alt="An African hoopoe perched beside a tree" loading="lazy" decoding="async" className="h-full min-h-[400px] w-full object-cover" />
         </div>
       </Section>
 

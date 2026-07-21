@@ -60,8 +60,19 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/10 px-5 py-5 text-center text-xs text-white/42">
-        © {new Date().getFullYear()} PROACTIVE Wildlife Protection Trust · Wildlife photography credited to Jenny Hishin
+      <div className="border-t border-white/10 px-5 py-5 text-center text-xs leading-6 text-white/42">
+        <p>© {new Date().getFullYear()} PROACTIVE Wildlife Protection Trust · With sincere thanks to Jenny Hishin for the use of her photographs</p>
+        <p>
+          African hoopoe photograph by{" "}
+          <a href="https://commons.wikimedia.org/wiki/File:African_Hoopoe_(Upupa_africana)_(52014881391).jpg" target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-white">
+            Bernard DUPONT
+          </a>{" "}
+          via Wikimedia Commons ·{" "}
+          <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-white">
+            CC BY-SA 2.0
+          </a>{" "}
+          · Cropped and converted to WebP
+        </p>
       </div>
     </footer>
   );
