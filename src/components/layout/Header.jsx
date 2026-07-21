@@ -27,6 +27,8 @@ export default function Header() {
             alt="PROACTIVE Wildlife Protection Trust"
             width="180"
             height="72"
+            loading="eager"
+            decoding="async"
             className="h-11 w-auto sm:h-12"
           />
         </NavLink>

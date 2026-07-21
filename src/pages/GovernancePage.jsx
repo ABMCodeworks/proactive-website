@@ -137,6 +137,8 @@ export default function GovernancePage() {
             src="/horn-stamp.svg"
             alt=""
             aria-hidden="true"
+            loading="lazy"
+            decoding="async"
             className="pointer-events-none absolute -bottom-28 right-0 w-[380px] opacity-[0.045]"
           />
           <div className="relative grid gap-10 lg:grid-cols-[0.55fr_1.45fr]">

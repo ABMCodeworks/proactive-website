@@ -10,6 +10,8 @@ export default function Footer() {
         src="/horn-stamp.svg"
         alt=""
         aria-hidden="true"
+        loading="lazy"
+        decoding="async"
         className="pointer-events-none absolute -bottom-40 -right-20 w-[520px] text-white opacity-[0.035]"
       />
 
@@ -18,6 +20,8 @@ export default function Footer() {
           <img
             src="/proactive-logo.webp"
             alt="PROACTIVE Wildlife Protection Trust"
+            loading="lazy"
+            decoding="async"
             className="h-14 w-auto brightness-0 invert"
           />
           <p className="mt-6 max-w-md text-sm leading-7 text-white/65">

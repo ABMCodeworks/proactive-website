@@ -118,7 +118,7 @@ export default function PartnersPage() {
               <div>
                 <div className="flex min-h-32 items-center">
                   {partner.logo ? (
-                    <img src={partner.logo} alt={`${partner.name} logo`} className="max-h-28 max-w-[320px] object-contain" />
+                    <img src={partner.logo} alt={`${partner.name} logo`} loading="lazy" decoding="async" className="max-h-28 max-w-[320px] object-contain" />
                   ) : (
                     <div className="font-serif text-4xl leading-none text-[#3f473a]">Stop Rhino<br />Poaching</div>
                   )}

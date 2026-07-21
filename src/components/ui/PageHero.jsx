@@ -6,6 +6,9 @@ export default function PageHero({ eyebrow, title, body, image, imageAlt, positi
       <img
         src={image}
         alt={imageAlt}
+        loading="eager"
+        fetchPriority="high"
+        decoding="async"
         className="h-[340px] w-full object-cover sm:absolute sm:inset-0 sm:h-full"
         style={{ objectPosition: position }}
       />

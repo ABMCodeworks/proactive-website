@@ -38,6 +38,9 @@ export default function HomePage() {
           <img
             src={rhinoHero}
             alt="Three rhinos walking together through the Zimbabwean bush"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
             className="h-[340px] w-full object-cover object-[58%_bottom] sm:absolute sm:inset-0 sm:h-full"
           />
 
@@ -190,7 +193,7 @@ export default function HomePage() {
           <div className="mt-9 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-7">
             {partnerLogos.map(([src, name]) => (
               <div key={name} className="flex min-h-24 items-center justify-center rounded-xl bg-white px-4 py-5">
-                <img src={src} alt={name} className="max-h-14 max-w-full object-contain" />
+                <img src={src} alt={name} loading="lazy" decoding="async" className="max-h-14 max-w-full object-contain" />
               </div>
             ))}
           </div>

@@ -90,7 +90,7 @@ export default function AboutPage() {
       <Section className="bg-[#d6d4cd]">
         <div className="grid gap-4 lg:grid-cols-2">
           <article className="relative overflow-hidden rounded-[2rem] bg-[#3f473a] p-8 text-white sm:p-11">
-            <img src="/horn-stamp.svg" alt="" aria-hidden="true" className="absolute -bottom-24 -right-8 w-80 opacity-[0.05]" />
+            <img src="/horn-stamp.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" className="absolute -bottom-24 -right-8 w-80 opacity-[0.05]" />
             <p className="text-xs font-black uppercase tracking-[0.22em] text-[#d6d4cd]">Our vision</p>
             <h2 className="relative mt-5 max-w-xl font-serif text-5xl leading-none tracking-[-0.035em]">
               Imagine a future where they didn’t need our protection.
