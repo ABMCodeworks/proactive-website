@@ -10,8 +10,8 @@ export const navItems = [
   { to: "/about", label: "About" },
   { to: "/our-work", label: "Our Work" },
   { to: "/partners", label: "Partners" },
-  { to: "/get-involved", label: "Get Involved" },
   { to: "/governance", label: "Governance" },
+  { to: "/get-involved", label: "Get Involved" },
 ];
 
 export const impactFacts = [

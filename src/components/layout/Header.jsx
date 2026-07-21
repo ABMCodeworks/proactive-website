@@ -33,7 +33,17 @@ export default function Header() {
 
         <nav className="hidden items-center gap-5 lg:flex">
           {navItems.map((item) => (
-            <NavLink key={item.to} to={item.to} className={linkClass}>
+            <NavLink
+              key={item.to}
+              to={item.to}
+              className={({ isActive }) =>
+                item.to === "/get-involved"
+                  ? `ml-2 rounded-full bg-[#5f6858] px-5 py-3 text-[0.75rem] font-black uppercase tracking-[0.14em] text-white shadow-md shadow-black/10 transition hover:bg-[#4b5446] ${
+                      isActive ? "ring-2 ring-[#3f473a]/25 ring-offset-2 ring-offset-[#ecebe7]" : ""
+                    }`
+                  : linkClass({ isActive })
+              }
+            >
               {item.label}
             </NavLink>
           ))}
@@ -60,9 +70,11 @@ export default function Header() {
                 to={item.to}
                 onClick={() => setIsOpen(false)}
                 className={({ isActive }) =>
-                  `rounded-xl px-4 py-3 text-sm font-bold uppercase tracking-[0.12em] ${
-                    isActive ? "bg-[#3f473a] text-white" : "text-[#374136]"
-                  }`
+                  item.to === "/get-involved"
+                    ? "mt-2 rounded-xl bg-[#5f6858] px-4 py-4 text-sm font-black uppercase tracking-[0.12em] text-white"
+                    : `rounded-xl px-4 py-3 text-sm font-bold uppercase tracking-[0.12em] ${
+                        isActive ? "bg-[#3f473a] text-white" : "text-[#374136]"
+                      }`
                 }
               >
                 {item.label}

@@ -2,14 +2,18 @@ import { ArrowRight, CheckCircle2, Landmark, Trees, UsersRound } from "lucide-re
 import { NavLink } from "react-router-dom";
 
 import PageHero from "../components/ui/PageHero";
+import ImageStrip from "../components/ui/ImageStrip";
 import Section from "../components/ui/Section";
 import Seo from "../components/seo/Seo";
 import { impactFacts, workAreas } from "../data/siteData";
 import { pageSeo } from "../data/seoData";
 
 import heroImage from "../assets/animal-4.webp";
-import landscapeImage from "../assets/lowveld.webp";
-import rhinoImage from "../assets/animal-5.webp";
+import landscapeImage from "../assets/home-slideshow/slide-25.webp";
+import sectorImage from "../assets/home-slideshow/slide-17.webp";
+import fieldCoordination from "../assets/home-slideshow/slide-15.webp";
+import canineTeam from "../assets/home-slideshow/slide-16.webp";
+import fieldTechnology from "../assets/home-slideshow/slide-22.webp";
 
 const stakeholderGroups = [
   {
@@ -43,6 +47,8 @@ export default function WorkPage() {
         image={heroImage}
         imageAlt="White rhino grazing in Zimbabwe"
         position="center"
+        align="right"
+        compact
       />
 
       <Section>
@@ -91,6 +97,15 @@ export default function WorkPage() {
               team delivers better outcomes for the wildlife it protects.
             </p>
           </div>
+        </div>
+        <div className="mt-12">
+          <ImageStrip
+            images={[
+              { src: fieldCoordination, alt: "Conservation personnel coordinating beside a field vehicle" },
+              { src: canineTeam, alt: "A conservation professional working with a detection dog" },
+              { src: fieldTechnology, alt: "Field personnel coordinating with radios and tracking technology" },
+            ]}
+          />
         </div>
       </Section>
 
@@ -155,7 +170,7 @@ export default function WorkPage() {
       <Section className="bg-[#3f473a] text-white">
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-stretch">
           <div className="relative min-h-[520px] overflow-hidden rounded-[2rem]">
-            <img src={landscapeImage} alt="South-east Lowveld landscape" className="absolute inset-0 h-full w-full object-cover" />
+            <img src={landscapeImage} alt="Rocky escarpment and woodland in the south-east Lowveld" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
             <div className="absolute bottom-5 left-5 max-w-md rounded-[1.4rem] bg-[#ecebe7] p-6 text-[#3f473a] sm:bottom-7 sm:left-7">
               <p className="eyebrow">Geographic focus</p>
               <h2 className="mt-3 font-serif text-4xl">South-east Lowveld, Zimbabwe</h2>
@@ -186,7 +201,7 @@ export default function WorkPage() {
               <CheckCircle2 className="h-5 w-5 text-[#5f6858]" /> Evidence-led and locally accountable
             </div>
           </div>
-          <img src={rhinoImage} alt="Young rhino in golden light" className="h-full min-h-[400px] w-full object-cover" />
+          <img src={sectorImage} alt="Conservation personnel and a detection dog working in the field" loading="lazy" decoding="async" className="h-full min-h-[400px] w-full object-cover" />
         </div>
       </Section>
 

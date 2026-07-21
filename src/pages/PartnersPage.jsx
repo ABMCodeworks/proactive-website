@@ -1,17 +1,21 @@
 import { ArrowUpRight } from "lucide-react";
 
 import PageHero from "../components/ui/PageHero";
+import ImageStrip from "../components/ui/ImageStrip";
 import Section from "../components/ui/Section";
 import Seo from "../components/seo/Seo";
 import { pageSeo } from "../data/seoData";
 
-import heroImage from "../assets/lowveld-4.webp";
+import heroImage from "../assets/partners-hero.webp";
 import zrpLogo from "../assets/partners/zrp-mffu.webp";
 import oakLogo from "../assets/partners/oak-foundation.webp";
 import alineaLogo from "../assets/partners/alinea-international.webp";
 import irfLogo from "../assets/partners/international-rhino-foundation.webp";
 import lrtLogo from "../assets/partners/lowveld-rhino-trust.webp";
 import ezytrackLogo from "../assets/partners/ezytrack.webp";
+import fieldBriefing from "../assets/home-slideshow/slide-6.webp";
+import sharedInformation from "../assets/home-slideshow/slide-20.webp";
+import radioCoordination from "../assets/home-slideshow/slide-23.webp";
 
 const partners = [
   {
@@ -74,8 +78,9 @@ export default function PartnersPage() {
         title="The network behind the work."
         body="PROACTIVE works alongside law enforcement, funders, conservation organisations, development specialists and technology partners to strengthen wildlife protection in Zimbabwe."
         image={heroImage}
-        imageAlt="Two rhinos moving through a Zimbabwean conservation landscape"
+        imageAlt="Close portrait of a black rhino"
         position="center"
+        align="right"
       />
 
       <Section>
@@ -92,6 +97,15 @@ export default function PartnersPage() {
             conservation knowledge and technology. Together, these capabilities
             form a stronger and more accountable protection network.
           </p>
+        </div>
+        <div className="mt-12">
+          <ImageStrip
+            images={[
+              { src: fieldBriefing, alt: "A conservation team moving together along a field track" },
+              { src: sharedInformation, alt: "Conservation colleagues reviewing information in the field" },
+              { src: radioCoordination, alt: "A conservation team member coordinating by radio" },
+            ]}
+          />
         </div>
       </Section>
 

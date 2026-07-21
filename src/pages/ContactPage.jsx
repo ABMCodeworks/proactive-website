@@ -7,8 +7,11 @@ import Section from "../components/ui/Section";
 import Seo from "../components/seo/Seo";
 import { pageSeo } from "../data/seoData";
 
-import heroImage from "../assets/animal-1.webp";
-import rhinoImage from "../assets/animal-6.webp";
+import heroImage from "../assets/animal-6.webp";
+import communityImage from "../assets/home-slideshow/slide-14.webp";
+import partnershipImage from "../assets/home-slideshow/slide-12.webp";
+import expertiseImage from "../assets/home-slideshow/slide-27.webp";
+import deliveryImage from "../assets/home-slideshow/slide-13.webp";
 
 const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 const dpoDonationUrl = import.meta.env.VITE_DPO_DONATION_URL;
@@ -17,16 +20,22 @@ const paypalDonationUrl = import.meta.env.VITE_PAYPAL_DONATION_URL;
 const waysToHelp = [
   {
     icon: Handshake,
+    image: partnershipImage,
+    imageAlt: "Many hands joining together in partnership",
     title: "Partner",
     body: "Bring institutional reach, conservation expertise, technology or funding into a trusted protection network.",
   },
   {
     icon: Wrench,
+    image: expertiseImage,
+    imageAlt: "Wildlife tracks recorded in the field",
     title: "Contribute expertise",
     body: "Share specialist knowledge in conservation, law, training, intelligence, veterinary science or organisational development.",
   },
   {
     icon: HandCoins,
+    image: deliveryImage,
+    imageAlt: "A conservation team member with a local family",
     title: "Support delivery",
     body: "Help fund practical training, equipment, information systems and co-ordinated wildlife protection.",
   },
@@ -80,7 +89,7 @@ export default function ContactPage() {
         title="Make stronger wildlife protection possible."
         body="Every meaningful contribution—funding, knowledge, technology or institutional support—helps the conservation network act sooner and work better."
         image={heroImage}
-        imageAlt="Rhino and other wildlife in a Zimbabwean landscape"
+        imageAlt="White rhino drinking at a waterhole in Zimbabwe"
         position="center"
       />
 
@@ -93,10 +102,13 @@ export default function ContactPage() {
           {waysToHelp.map((way) => {
             const Icon = way.icon;
             return (
-              <article key={way.title} className="rounded-[1.7rem] border border-[#3f473a]/10 bg-white/45 p-7">
-                <Icon className="h-7 w-7 text-[#5f6858]" />
-                <h3 className="mt-10 font-serif text-3xl text-[#3f473a]">{way.title}</h3>
-                <p className="mt-4 text-sm leading-7 text-[#596258]">{way.body}</p>
+              <article key={way.title} className="overflow-hidden rounded-[1.7rem] border border-[#3f473a]/10 bg-white/45">
+                <img src={way.image} alt={way.imageAlt} loading="lazy" decoding="async" className="h-52 w-full object-cover" />
+                <div className="p-7">
+                  <Icon className="h-7 w-7 text-[#5f6858]" />
+                  <h3 className="mt-8 font-serif text-3xl text-[#3f473a]">{way.title}</h3>
+                  <p className="mt-4 text-sm leading-7 text-[#596258]">{way.body}</p>
+                </div>
               </article>
             );
           })}
@@ -152,7 +164,7 @@ export default function ContactPage() {
       <Section>
         <div className="grid overflow-hidden rounded-[2rem] border border-[#3f473a]/10 bg-white/45 lg:grid-cols-[0.82fr_1.18fr]">
           <div className="relative min-h-[420px]">
-            <img src={rhinoImage} alt="White rhino at a waterhole" className="absolute inset-0 h-full w-full object-cover" />
+            <img src={communityImage} alt="A conservation professional sharing knowledge with a child" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
             <div className="absolute inset-x-5 bottom-5 rounded-[1.4rem] bg-[#3f473a] p-6 text-white">
               <p className="text-xs font-black uppercase tracking-[0.18em] text-[#d6d4cd]">Connect directly</p>
               <a href="mailto:admin@proactivewildlife.org" className="mt-3 flex items-center gap-3 text-sm text-white/80 hover:text-white">

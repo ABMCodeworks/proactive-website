@@ -6,10 +6,11 @@ import Seo from "../components/seo/Seo";
 import { impactFacts, workAreas } from "../data/siteData";
 import { pageSeo } from "../data/seoData";
 
-import rhinoHero from "../assets/animal-6.webp";
-import rhinoWater from "../assets/animal-4.webp";
-import rhinoCalf from "../assets/animal-8.webp";
-import elephants from "../assets/animal-2.webp";
+import rhinoHero from "../assets/home-hero.webp";
+import wildlifeScene from "../assets/home-slideshow/slide-3.webp";
+import woodlandCanopy from "../assets/home-slideshow/slide-7.webp";
+import communityGathering from "../assets/home-slideshow/slide-11.webp";
+import elephantLandscape from "../assets/home-slideshow/slide-26.webp";
 import zrpLogo from "../assets/partners/zrp-mffu.webp";
 import oakLogo from "../assets/partners/oak-foundation.webp";
 import alineaLogo from "../assets/partners/alinea-international.webp";
@@ -31,21 +32,21 @@ export default function HomePage() {
     <div>
       <Seo {...pageSeo.home} />
 
-      <section className="relative min-h-[calc(100vh-116px)] overflow-hidden bg-[#d8d4c8]">
+      <section className="bg-[#d8d4c8] sm:relative sm:min-h-[calc(100vh-116px)] sm:overflow-hidden">
           <img
             src={rhinoHero}
-            alt="White rhino drinking at a waterhole in Zimbabwe"
-            className="absolute inset-0 h-full w-full object-cover object-center"
+            alt="Three rhinos walking together through the Zimbabwean bush"
+            className="h-[340px] w-full object-cover object-[58%_bottom] sm:absolute sm:inset-0 sm:h-full"
           />
 
           <motion.div
             initial={{ opacity: 0, x: -18 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.65 }}
-            className="relative z-10 flex min-h-[calc(100vh-116px)] max-w-[720px] flex-col justify-end bg-[#ecebe7]/96 p-7 shadow-2xl shadow-black/15 sm:p-10 lg:p-14"
+            className="relative z-10 flex w-full flex-col justify-end bg-[#ecebe7]/96 p-7 shadow-2xl shadow-black/15 sm:min-h-[calc(100vh-116px)] sm:max-w-[560px] sm:p-10"
           >
             <p className="eyebrow">Wildlife protection, connected</p>
-            <h1 className="mt-5 font-serif text-5xl leading-[0.95] tracking-[-0.045em] text-[#3f473a] sm:text-6xl lg:text-7xl">
+            <h1 className="mt-5 font-serif text-5xl leading-[0.95] tracking-[-0.045em] text-[#3f473a] sm:text-6xl">
               Imagine a future where they don’t need our protection.
             </h1>
             <p className="mt-7 max-w-xl text-base leading-8 text-[#4d574b] sm:text-lg">
@@ -158,12 +159,13 @@ export default function HomePage() {
 
         <div className="grid auto-rows-[240px] gap-4 md:grid-cols-3 md:auto-rows-[300px]">
           {[
-            [rhinoWater, "A white rhino with oxpeckers", "Wildlife"],
-            [elephants, "An elephant herd in Zimbabwe", "Ecosystems"],
-            [rhinoCalf, "A rhino mother and calf", "The next generation"],
+            [wildlifeScene, "A rhino grazing among zebras in Zimbabwe", "Wildlife"],
+            [woodlandCanopy, "Looking up into a mature woodland canopy", "Habitat"],
+            [communityGathering, "Community members gathered outdoors", "Communities"],
+            [elephantLandscape, "Elephants moving across a Zimbabwean landscape", "Ecosystems"],
           ].map(([src, alt, label], index) => (
-            <figure key={src} className={`relative overflow-hidden rounded-[1.7rem] ${index === 0 ? "md:col-span-2" : ""}`}>
-              <img src={src} alt={alt} className="h-full w-full object-cover transition duration-700 hover:scale-[1.025]" />
+            <figure key={src} className={`relative overflow-hidden rounded-[1.7rem] ${index === 0 || index === 3 ? "md:col-span-2" : ""}`}>
+              <img src={src} alt={alt} loading="lazy" decoding="async" className="h-full w-full object-cover transition duration-700 hover:scale-[1.025]" />
               <figcaption className="absolute bottom-4 left-4 rounded-full bg-[#ecebe7] px-4 py-2 text-[0.68rem] font-black uppercase tracking-[0.16em] text-[#3f473a]">
                 {label}
               </figcaption>

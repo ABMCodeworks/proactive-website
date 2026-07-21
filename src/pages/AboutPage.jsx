@@ -2,13 +2,17 @@ import { ArrowRight, EyeOff, HeartHandshake, Scale, Target } from "lucide-react"
 import { NavLink } from "react-router-dom";
 
 import PageHero from "../components/ui/PageHero";
+import ImageStrip from "../components/ui/ImageStrip";
 import Section from "../components/ui/Section";
 import Seo from "../components/seo/Seo";
 import { pageSeo } from "../data/seoData";
 
 import heroImage from "../assets/animal-8.webp";
-import landscapeImage from "../assets/lowveld-3.webp";
-import wildlifeImage from "../assets/animal-7.webp";
+import landscapeImage from "../assets/home-slideshow/slide-24.webp";
+import wildlifeImage from "../assets/home-slideshow/slide-19.webp";
+import zimbabweDetail from "../assets/home-slideshow/slide-2.webp";
+import partnershipImage from "../assets/home-slideshow/slide-10.webp";
+import conservationLandscape from "../assets/home-slideshow/slide-1.webp";
 
 const values = [
   {
@@ -39,6 +43,9 @@ export default function AboutPage() {
         image={heroImage}
         imageAlt="Rhino mother and calf at a waterhole"
         position="center"
+        align="right"
+        narrow
+        edge
       />
 
       <Section>
@@ -68,6 +75,15 @@ export default function AboutPage() {
               before a threat becomes a crisis.
             </p>
           </div>
+        </div>
+        <div className="mt-12">
+          <ImageStrip
+            images={[
+              { src: conservationLandscape, alt: "Aerial view of a Zimbabwean conservation landscape" },
+              { src: zimbabweDetail, alt: "Zimbabwe flag detail on a field uniform" },
+              { src: partnershipImage, alt: "Conservation partners placing their hands together" },
+            ]}
+          />
         </div>
       </Section>
 
@@ -142,7 +158,7 @@ export default function AboutPage() {
 
       <Section className="pt-4">
         <div className="grid overflow-hidden rounded-[2rem] bg-[#3f473a] lg:grid-cols-[1.1fr_0.9fr]">
-          <img src={landscapeImage} alt="A Lowveld conservation landscape" className="h-full min-h-[420px] w-full object-cover" />
+          <img src={landscapeImage} alt="Aerial view across a Lowveld river and woodland" loading="lazy" decoding="async" className="h-full min-h-[420px] w-full object-cover" />
           <div className="flex flex-col justify-center p-8 text-white sm:p-12">
             <p className="text-xs font-black uppercase tracking-[0.22em] text-[#d6d4cd]">A whole-system view</p>
             <h2 className="mt-5 font-serif text-5xl leading-none tracking-[-0.035em]">More than a single species.</h2>
@@ -157,7 +173,7 @@ export default function AboutPage() {
 
       <Section>
         <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-stretch">
-          <img src={wildlifeImage} alt="African wild dogs in a conservation landscape" className="h-full min-h-[360px] w-full rounded-[2rem] object-cover" />
+          <img src={wildlifeImage} alt="A herd of wildebeest moving through woodland" loading="lazy" decoding="async" className="h-full min-h-[360px] w-full rounded-[2rem] object-cover" />
           <div className="rounded-[2rem] border border-[#3f473a]/10 bg-white/45 p-8 sm:p-11">
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#3f473a] text-white">
               <EyeOff className="h-5 w-5" />

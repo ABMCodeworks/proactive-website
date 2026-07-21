@@ -1,12 +1,16 @@
 import { BadgeCheck, FileCheck2, Landmark, Scale, ShieldCheck } from "lucide-react";
 
 import PageHero from "../components/ui/PageHero";
+import ImageStrip from "../components/ui/ImageStrip";
 import Section from "../components/ui/Section";
 import Seo from "../components/seo/Seo";
 import { advisors, trustees } from "../data/siteData";
 import { pageSeo } from "../data/seoData";
 
 import heroImage from "../assets/animal-5.webp";
+import trainingImage from "../assets/home-slideshow/slide-4.webp";
+import leadershipImage from "../assets/home-slideshow/slide-5.webp";
+import fieldTeamImage from "../assets/home-slideshow/slide-21.webp";
 
 const governancePrinciples = [
   {
@@ -50,12 +54,23 @@ export default function GovernancePage() {
             const Icon = item.icon;
             return (
               <article key={item.title}>
-                <Icon className="h-7 w-7 text-[#5f6858]" />
-                <h2 className="mt-7 font-serif text-3xl text-[#3f473a]">{item.title}</h2>
+                <div className="flex items-center gap-3">
+                  <Icon className="h-7 w-7 shrink-0 text-[#5f6858]" />
+                  <h2 className="font-serif text-3xl text-[#3f473a]">{item.title}</h2>
+                </div>
                 <p className="mt-4 text-sm leading-7 text-[#596258]">{item.body}</p>
               </article>
             );
           })}
+        </div>
+        <div className="mt-12">
+          <ImageStrip
+            images={[
+              { src: trainingImage, alt: "A professional conservation training session" },
+              { src: leadershipImage, alt: "PROACTIVE leadership addressing a training group" },
+              { src: fieldTeamImage, alt: "Conservation personnel conferring in the field" },
+            ]}
+          />
         </div>
       </Section>
 
